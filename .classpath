@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="QTClient/src"/>
+	<classpathentry kind="src" path="QTServer/src"/>
+	<classpathentry kind="lib" path="QTServer/libraries/mysql-connector-java-8.0.16.jar"/>
+	<classpathentry kind="output" path="QTClient/bin"/>
+</classpath>

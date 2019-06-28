@@ -1,5 +1,83 @@
 package server;
 
-public class MultiServer {
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
+public class MultiServer{
+	/**
+	 * Porta a cui si deve connetere il server
+	 * per interagire con il client
+	 */
+	private static int PORT=8080;
+	/**
+	 * Instanzia un oggetto di tipo MultiServer
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int port=8080;
+		//if(args.length==1) {
+			try{
+				try {
+					port=new Integer(args[0]).intValue();
+					if(port>=1 && port<=1024) {
+						System.out.println("The selected port number '"+port+"' is NOT available.");
+						port=8080;
+						System.out.println("Value setted to '"+port+"' by DEFAULT");
+					}
+				}catch(ArrayIndexOutOfBoundsException e){
+					port = 8080;
+					System.out.println("Value setted to '"+port+"' by DEFAULT");
+				}finally {
+					System.out.println("Port number: "+port);
+					new MultiServer(port);
+				}
+			}catch (IOException e){
+				System.out.println(e);/////////////////
+				return;
+			}
+		//}else System.out.println("ERROR: MAX 1 argument.");
+
+	}
+
+	/**
+	 * Costruttore di classe.
+	 * Inizializza la porta ed invoca run().
+	 * @param port
+	 */
+	private MultiServer(int port) throws IOException{
+		PORT = port;
+		run();
+	}
+	/**
+	 * Istanzia un oggetto istanza della classe ServerSocket
+	 * che pone in attesa di richiesta di connessioni da parte
+	 * del client.
+	 * Ad ogni nuova richiesta di connessione
+	 * si istanzia ServerOneClient.
+	 */
+	private void run() throws IOException{
+		ServerSocket s = new ServerSocket(PORT);
+		System.out.println("Server Started");////////
+		try {
+			while(true) {
+				//Si blocca finche' non si verifica una connessione:
+				Socket socket =s.accept();
+				try {
+					new ServerOneClient(socket);
+				}catch(IOException e) {
+					//Se fallisce chiude il socket,
+					//altrimenti il thread la chiudera':
+					socket.close();
+				}
+			}
+		}finally{
+			s.close();
+		}
+	}
 }

@@ -9,63 +9,75 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class MultiServer {
-	private static final int PORT = 8080;
-	public static void main(String[] args){
+public class MultiServer{
+	/**
+	 * Porta a cui si deve connetere il server
+	 * per interagire con il client
+	 */
+	private static int PORT=8080;
+	/**
+	 * Instanzia un oggetto di tipo MultiServer
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int port=8080;
+		//if(args.length==1) {
+			try{
+				try {
+					port=new Integer(args[0]).intValue();
+					if(port>=1 && port<=1024) {
+						System.out.println("The selected port number '"+port+"' is NOT available.");
+						port=8080;
+						System.out.println("Value setted to '"+port+"' by DEFAULT");
+					}
+				}catch(ArrayIndexOutOfBoundsException e){
+					port = 8080;
+					System.out.println("Value setted to '"+port+"' by DEFAULT");
+				}finally {
+					System.out.println("Port number: "+port);
+					new MultiServer(port);
+				}
+			}catch (IOException e){
+				System.out.println(e);/////////////////
+				return;
+			}
+		//}else System.out.println("ERROR: MAX 1 argument.");
+
+	}
+
+	/**
+	 * Costruttore di classe.
+	 * Inizializza la porta ed invoca run().
+	 * @param port
+	 */
+	private MultiServer(int port) throws IOException{
+		PORT = port;
+		run();
+	}
+	/**
+	 * Istanzia un oggetto istanza della classe ServerSocket
+	 * che pone in attesa di richiesta di connessioni da parte
+	 * del client.
+	 * Ad ogni nuova richiesta di connessione
+	 * si istanzia ServerOneClient.
+	 */
+	private void run() throws IOException{
 		ServerSocket s = new ServerSocket(PORT);
-		System.out.println("Server Started");//////////
+		System.out.println("Server Started");////////
 		try {
 			while(true) {
-				//Si blocca finche' non si verifica una connessione
-				Socket socket = s.accept();
+				//Si blocca finche' non si verifica una connessione:
+				Socket socket =s.accept();
 				try {
-					new MultiServerHandle(socket);
+					new ServerOneClient(socket);
 				}catch(IOException e) {
 					//Se fallisce chiude il socket,
 					//altrimenti il thread la chiudera':
 					socket.close();
 				}
 			}
-		}finally {
+		}finally{
 			s.close();
 		}
 	}
 }
-class MultiServerHandle extends Thread{
-	private Socket socket;
-	private BufferedReader in;
-	private PrintWriter out;
-	public MultiServerHandle(Socket s) throws IOException{
-		socket=s;
-		in = new BufferedReader(new InputStreamReader(
-				socket.getInputStream()));
-		out = new PrintWriter(
-				new BufferedWriter(
-						new OutputStreamWriter(
-								socket.getOutputStream())),true);
-		//se una qualsiasi delle chiamate precedenti solleva una
-		//eccezione, il processo chiamante e' responsabile della
-		//chiusura del socket. Altrimenti lo chiudera' il thread
-		start();//chiama run()
-	}
-	private void run() {
-		try {
-			while(true) {
-				String str = in.readLine();
-				if(str.equals("END")) break;
-				System.out.println("Echoing: "+str);///////////
-				out.println(str);//////////
-			}
-			System.out.println("closing...");
-		}catch(IOException e) {
-			System.out.println("IO Exception");
-		}finally {
-			try {
-				socket.close();
-			}catch(IOException e) {
-				System.out.println("Socket not closed");
-			}
-		}
-	}
-}
-

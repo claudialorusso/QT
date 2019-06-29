@@ -25,7 +25,11 @@ import database.Table_Schema;
  * @author Dileo Angela, Lorusso Claudia
  */
 public class Data implements Serializable {
-	private static final long serialVersionUID=1L;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8785322021794956318L;
 	//private Object data[][];
 	/**
 	 * Lista di Example/tuple
@@ -56,7 +60,7 @@ public class Data implements Serializable {
 	public Data(String tableName) throws DatabaseConnectionException, SQLException, EmptyDatasetException,TableNotFoundException, NoValueException{
 		try{
 			DbAccess db = new DbAccess();
-			db.initConnection();			
+			db.initConnection();
 			Table_Data table = new Table_Data(db);
 			boolean exists = false;
 			try {
@@ -91,7 +95,7 @@ public class Data implements Serializable {
 							attributeSet.add(attribute);
 						}
 					}else throw new EmptyDatasetException();
-					db.closeConnection();
+					//db.closeConnection();
 				}else throw new TableNotFoundException(tableName);
 			}catch(SQLException ex2) {
 				System.out.println(ex2.getMessage());

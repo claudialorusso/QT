@@ -1,11 +1,16 @@
 package database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 /**
  * Modella una transazione letta dalla base di dati.
  */
-public class Example implements Comparable<Example>{
+public class Example implements Comparable<Example>, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1569306353202202903L;
 	/**
 	 * Lista di oggetti(Item) contenuti nella tupla example/////////////////
 	 */

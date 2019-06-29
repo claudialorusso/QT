@@ -10,6 +10,6 @@ public class ServerException extends Exception {
 	}
 
 	public ServerException(String result) {
-		super("ERROR: Richiesta client '"+result+"' non valida!");////////////////////////////////////////
+		super("ERRORE: Richiesta client non valida;\nMOTIVAZIONE:'"+result+"'");////////////////////////////////////////
 	}
 }

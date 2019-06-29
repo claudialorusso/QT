@@ -45,6 +45,7 @@ public class MainTest {
 	}
 	
 	private String learningFromFile() throws SocketException,ServerException,IOException,ClassNotFoundException{
+		//CASE 3
 		out.writeObject(3);
 		
 		System.out.print("Table Name:");
@@ -63,6 +64,7 @@ public class MainTest {
 		
 	}
 	private void storeTableFromDb() throws SocketException,ServerException,IOException,ClassNotFoundException{
+		//CASE 0
 		out.writeObject(0);
 		System.out.print("Table name:");
 		String tabName=Keyboard.readString();
@@ -73,12 +75,15 @@ public class MainTest {
 		
 	}
 	private String learningFromDbTable() throws SocketException,ServerException,IOException,ClassNotFoundException{
-		out.writeObject(1);
+		//CASE 1
 		double r=1.0;
+		out.writeObject(1);
+		System.out.println((String)in.readObject());
 		do{
 			System.out.print("Radius:");
 			r=Keyboard.readDouble();
 		} while(r<=0);
+		//writeOUT Radius
 		out.writeObject(r);
 		String result = (String)in.readObject();
 		if(result.equals("OK")){
@@ -89,7 +94,7 @@ public class MainTest {
 		
 		
 	}
-	
+	//CASE 2
 	private void storeClusterInFile() throws SocketException,ServerException,IOException,ClassNotFoundException{
 		out.writeObject(2);
 		
@@ -178,6 +183,8 @@ public class MainTest {
 									
 						}
 						catch (SocketException e) {
+							
+							e.printStackTrace();/////////////////////
 							System.out.println(e);
 							return;
 						}

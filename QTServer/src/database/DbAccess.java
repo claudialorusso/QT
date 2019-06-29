@@ -52,7 +52,7 @@ public class DbAccess {
 	public void initConnection() throws DatabaseConnectionException{
 		try {
 			Class.forName(DRIVER_CLASS_NAME).newInstance();
-			String str = DBMS + "://" + SERVER + ":" + PORT + "/" + DATABASE + TIMEZONE;
+			String str = DBMS + "://" + SERVER + ":" + PORT + "/" + DATABASE + TIMEZONE;//
 			conn = DriverManager.getConnection(str,USER_ID,PASSWORD);////////////////////METODO STATICO, SERIALIZZAZIONE?
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

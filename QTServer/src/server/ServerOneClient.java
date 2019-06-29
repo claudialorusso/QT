@@ -34,15 +34,18 @@ public class ServerOneClient extends Thread {
 		while(true){
 			try {
 				int cases = new Integer((int)this.in.readObject());
-				System.out.println(cases);
+				System.out.println("CASO:"+cases);
 				switch(cases){
-				case 1:
-					System.out.println("Inserisci il raggio: ");
+				case 1:					
+					out.writeObject(data.toString());
+					//readIN Radius
 					value = ((double) this.in.readObject());
 					kmeans = new QTMiner(value);
 					try{
-						kmeans.compute(data);
-						out.writeObject(value);
+						int numC=kmeans.compute(data);
+						//OUT ok
+						out.writeObject("OK");
+						out.writeObject(numC);
 						out.writeObject(kmeans.getC().toString(data));
 					}catch(ClusteringRadiusException e){ 
 						System.out.println(e.getMessage());
@@ -70,21 +73,11 @@ public class ServerOneClient extends Thread {
 						} 
 						else 
 							out.writeObject("Caricamento non andato a buon fine!");
-					}catch(DatabaseConnectionException e1){
-						out.writeObject(e1.getMessage());
-					}catch(SQLException e2){
-						out.writeObject(e2.getMessage());
-					}catch(NoValueException e3){
-						out.writeObject("Valori non presenti!");
-					}catch(EmptyDatasetException e4){
-						out.writeObject(e4.getMessage());
-					}catch(TableNotFoundException e5){
-						out.writeObject(e5.getMessage());
-					}catch(IOException e6){
-						out.writeObject(e6.getMessage());
+					}catch(DatabaseConnectionException|SQLException|NoValueException|EmptyDatasetException|TableNotFoundException|IOException e) {
+						out.writeObject(e.getMessage());
 					}
 					break;
-				case 4:
+				case 0:
 					table = ((String)this.in.readObject());
 					try{
 						data = new Data(table);

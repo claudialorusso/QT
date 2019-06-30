@@ -35,9 +35,11 @@ public class ServerOneClient extends Thread {
 		while(true){
 			try {
 				int cases = new Integer((int)this.in.readObject());
-				System.out.println("\tCASO:"+cases);//richiesta di...in base al caso
+				System.out.println(socket.toString());
+				System.out.print("\tThe client is ");
 				switch(cases){
 				case 0://storeTableFromDb()
+					System.out.println("storing a table from the Db");
 					String table = ((String)this.in.readObject());
 					try{
 						data = new Data(table);
@@ -52,6 +54,7 @@ public class ServerOneClient extends Thread {
 					}
 					break;
 				case 1://learningFromDbTable()
+					System.out.println("learning a table from the Db");
 					out.writeObject(data.toString());
 					//readIN Radius
 					radius = ((double) this.in.readObject());
@@ -68,6 +71,7 @@ public class ServerOneClient extends Thread {
 					break;
 				case 2://storeClusterInFile()
 					try {
+						System.out.println("is storing the ClusterSet into a file");
 						String file = (String) in.readObject();
 						qt.salva(file);
 						out.writeObject("OK");
@@ -80,9 +84,7 @@ public class ServerOneClient extends Thread {
 					}
 					break;
 				case 3: // learningFromFile()
-					//String table = ((String) this.in.readObject());
-					//value = ((double) this.in.readObject());
-					//System.out.println(table);
+					System.out.println("learning a ClusterSet from a file.");
 					String fileName = ((String) this.in.readObject());
 					try {
 						//data = new Data(table);
@@ -111,11 +113,13 @@ public class ServerOneClient extends Thread {
 					out.writeObject("ERRORE: non è possibile proseguire!");
 					break;
 				} catch (IOException e1) {
-					System.out.println("Chiusura della connessione... \n");
+					System.out.println("Chiusura della connessione ["+socket.getPort()+"]... ");
 					break;
 				}finally{
 					try {
 						socket.close();
+						//out.close();
+						//in.close();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}

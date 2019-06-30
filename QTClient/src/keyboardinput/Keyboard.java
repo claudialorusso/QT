@@ -192,7 +192,6 @@ public class Keyboard {
 		try {
 			if (token.length() > 1) {
 				current_token = token.substring(1, token.length());
-				//token= getNextToken(true);
 			} else
 				current_token = null;
 			value = token.charAt(0);

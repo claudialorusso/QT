@@ -1,5 +1,6 @@
 package server;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -18,7 +19,7 @@ public class ServerOneClient extends Thread {
 	private Socket socket;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
-	private QTMiner kmeans;
+	private QTMiner qt;
 
 	public ServerOneClient(Socket s) throws IOException {
 		this.socket = s;
@@ -29,72 +30,72 @@ public class ServerOneClient extends Thread {
 
 	public void run() {
 		Data data=null;
-		kmeans=null;
-		double value;
+		qt=null;
+		double radius;
 		while(true){
 			try {
 				int cases = new Integer((int)this.in.readObject());
-				System.out.println("CASO:"+cases);
+				System.out.println("\tCASO:"+cases);//richiesta di...in base al caso
 				switch(cases){
-				case 1:
+				case 0://storeTableFromDb()
+					String table = ((String)this.in.readObject());
+					try{
+						data = new Data(table);
+						out.writeObject("OK");
+					}catch(DatabaseConnectionException|
+							SQLException|
+							NoValueException|
+							EmptyDatasetException|
+							TableNotFoundException|
+							IOException e) {
+						out.writeObject(e.getMessage());
+					}
+					break;
+				case 1://learningFromDbTable()
 					out.writeObject(data.toString());
 					//readIN Radius
-					value = ((double) this.in.readObject());
-					kmeans = new QTMiner(value);
+					radius = ((double) this.in.readObject());
+					qt = new QTMiner(radius);
 					try{
-						int numC=kmeans.compute(data);
+						int numC=qt.compute(data);
 						//OUT ok
 						out.writeObject("OK");
 						out.writeObject(numC);
-						out.writeObject(kmeans.getC().toString(data));
+						out.writeObject(qt.getC().toString(data));
 					}catch(ClusteringRadiusException e){ 
 						System.out.println(e.getMessage());
 					}
 					break;
-				case 2:
+				case 2://storeClusterInFile()
 					try {
 						String file = (String) in.readObject();
-						kmeans.salva(file);
+						qt.salva(file);
 						out.writeObject("OK");
-					} catch(Exception e) {
+					} catch (FileNotFoundException e) {
+						System.out.println("ERROR: File Not Found!");
+					}catch (IOException e) {
+						System.out.println("ERROR: I/O not corrected!");
+					}catch(Exception e) {
 						out.writeObject(e.getMessage());
 					}
 					break;
-				case 3: 
-					String table = ((String) this.in.readObject());
-					value = ((double) this.in.readObject());
+				case 3: // learningFromFile()
+					//String table = ((String) this.in.readObject());
+					//value = ((double) this.in.readObject());
+					//System.out.println(table);
 					String fileName = ((String) this.in.readObject());
-					System.out.println(table);
 					try {
-						data = new Data(table);
+						//data = new Data(table);
 						if(fileName!=null) {
-							System.out.println(fileName);
-							kmeans = new QTMiner(fileName);
-							out.writeObject(kmeans.getC().toString(data));
-						} 
-						else 
-							out.writeObject("Caricamento non andato a buon fine!");
-					}catch(DatabaseConnectionException|SQLException|NoValueException|EmptyDatasetException|TableNotFoundException|IOException e) {
+							out.writeObject("OK");
+							qt = new QTMiner(fileName);
+							out.writeObject(qt.toString());
+						} else out.writeObject("Caricamento non andato a buon fine!");
+					}catch (FileNotFoundException e) {
 						out.writeObject(e.getMessage());
-					}
-					break;
-				case 0:
-					table = ((String)this.in.readObject());
-					try{
-						data = new Data(table);
-						out.writeObject("OK");
-					}catch(DatabaseConnectionException e1){
-						out.writeObject(e1.getMessage());
-					}catch(SQLException e2){
-						out.writeObject(e2.getMessage());
-					}catch(NoValueException e3){
-						out.writeObject("Valori non presenti!");
-					}catch(EmptyDatasetException e4){
-						out.writeObject(e4.getMessage());
-					}catch(TableNotFoundException e5){
-						out.writeObject(e5.getMessage());
-					}catch(IOException e6){
-						out.writeObject(e6.getMessage());
+					}catch(	IOException|
+							ClassNotFoundException e) {
+						out.writeObject(e.getMessage());
 					}
 					break;
 				}

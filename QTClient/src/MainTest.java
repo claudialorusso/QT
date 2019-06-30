@@ -44,19 +44,13 @@ public class MainTest {
 		
 	}
 	
-	private String learningFromFile() throws SocketException,ServerException,IOException,ClassNotFoundException{
+	private String learningFromFile() throws FileNotFoundException,IOException,ClassNotFoundException,ServerException{
 		//CASE 3
 		out.writeObject(3);
-		
-		System.out.print("Table Name:");
-		String tabName=Keyboard.readString();
-		out.writeObject(tabName);
-		double r=1.0;
-		do{
-			System.out.print("Radius:");
-			r=Keyboard.readDouble();
-		} while(r<=0);
-		out.writeObject(r);
+		String fileName = "";
+		System.out.print("File Name:");
+		fileName=Keyboard.readWord()+".dmp";
+		out.writeObject(fileName);
 		String result = (String)in.readObject();
 		if(result.equals("OK"))
 			return (String)in.readObject();
@@ -66,8 +60,9 @@ public class MainTest {
 	private void storeTableFromDb() throws SocketException,ServerException,IOException,ClassNotFoundException{
 		//CASE 0
 		out.writeObject(0);
+		String tabName = "playtennis";
 		System.out.print("Table name:");
-		String tabName=Keyboard.readString();
+		tabName=Keyboard.readString();
 		out.writeObject(tabName);
 		String result = (String)in.readObject();
 		if(!result.equals("OK"))
@@ -82,7 +77,7 @@ public class MainTest {
 		do{
 			System.out.print("Radius:");
 			r=Keyboard.readDouble();
-		} while(r<=0);
+		} while(r<=0||Double.isNaN(r));
 		//writeOUT Radius
 		out.writeObject(r);
 		String result = (String)in.readObject();
@@ -94,8 +89,9 @@ public class MainTest {
 		
 		
 	}
-	//CASE 2
+	
 	private void storeClusterInFile() throws SocketException,ServerException,IOException,ClassNotFoundException{
+		//CASE 2
 		out.writeObject(2);
 		String fileName = "";
 		System.out.print("File name:");////////////
@@ -126,8 +122,8 @@ public class MainTest {
 			{
 				case 1:
 					try {
-						String kmeans=main.learningFromFile();
-						System.out.println(kmeans);
+						String qt=main.learningFromFile();
+						System.out.println(qt);
 					}
 					catch (SocketException e) {
 						System.out.println(e);

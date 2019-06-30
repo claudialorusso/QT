@@ -1,11 +1,6 @@
 package server;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,28 +16,38 @@ public class MultiServer{
 	 */
 	public static void main(String[] args) {
 		int port=8080;
-		//if(args.length==1) {
+		if(args.length==1) {
 			try{
 				try {
 					port=new Integer(args[0]).intValue();
 					if(port>=1 && port<=1024) {
 						System.out.println("The selected port number '"+port+"' is NOT available.");
-						port=8080;
+						port=PORT;
 						System.out.println("Value setted to '"+port+"' by DEFAULT");
 					}
 				}catch(ArrayIndexOutOfBoundsException e){
-					port = 8080;
+					port = PORT;
 					System.out.println("Value setted to '"+port+"' by DEFAULT");
 				}finally {
 					System.out.println("Port number: "+port);
 					new MultiServer(port);
 				}
 			}catch (IOException e){
-				System.out.println(e);/////////////////
+				System.out.println(e.getMessage());
+
 				return;
 			}
-		//}else System.out.println("ERROR: MAX 1 argument.");
-
+		}else if(args.length==0) {
+			try {
+				port=8080;
+				System.out.println("Port value setted to '"+port+"' by DEFAULT");
+				new MultiServer(port);
+			}catch (IOException e){
+				System.out.println(e.getMessage());
+			}
+		}else {
+			System.out.println("ERROR: MAX 1 argument.");
+		}
 	}
 
 	/**

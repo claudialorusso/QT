@@ -97,11 +97,14 @@ public class MainTest {
 	//CASE 2
 	private void storeClusterInFile() throws SocketException,ServerException,IOException,ClassNotFoundException{
 		out.writeObject(2);
-		
-		
+		String fileName = "";
+		System.out.print("File name:");////////////
+		fileName=Keyboard.readWord()+".dmp";
+		out.writeObject(fileName);
 		String result = (String)in.readObject();
-		if(!result.equals("OK"))
-			 throw new ServerException(result);
+		if(result.equals("OK"))
+			System.out.println("Saving clusters in "+fileName);
+		else throw new ServerException(result);
 		
 	}
 	public static void main(String[] args) {
@@ -183,8 +186,6 @@ public class MainTest {
 									
 						}
 						catch (SocketException e) {
-							
-							e.printStackTrace();/////////////////////
 							System.out.println(e);
 							return;
 						}

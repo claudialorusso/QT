@@ -36,7 +36,7 @@ public class ServerOneClient extends Thread {
 				int cases = new Integer((int)this.in.readObject());
 				System.out.println("CASO:"+cases);
 				switch(cases){
-				case 1:					
+				case 1:
 					out.writeObject(data.toString());
 					//readIN Radius
 					value = ((double) this.in.readObject());
@@ -55,6 +55,7 @@ public class ServerOneClient extends Thread {
 					try {
 						String file = (String) in.readObject();
 						kmeans.salva(file);
+						out.writeObject("OK");
 					} catch(Exception e) {
 						out.writeObject(e.getMessage());
 					}

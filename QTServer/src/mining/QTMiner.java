@@ -171,31 +171,31 @@ public class QTMiner implements Serializable{
 
 		return cSet.last();
 	}
-	
-	//AGGIUNTA DEI METODI PER LA SERIALIZZAZIONE E DE-SERIALIZZAZIONE DI C
-	
-		//nuovo costruttore della classe QTMiner
-		public QTMiner(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException{
-			FileInputStream fileInput = new FileInputStream(fileName);
-			ObjectInputStream in = new ObjectInputStream(fileInput);
-			this.C = (ClusterSet) in.readObject();
-			//chiusura degli stream
-			in.close();
-			fileInput.close();
-		}
-		
-		public void salva(String fileName) throws FileNotFoundException, IOException {
-			FileOutputStream fileOutput = new FileOutputStream(fileName);
-			ObjectOutputStream out = new ObjectOutputStream(fileOutput);
-			out.writeObject(this.C);
-			//chiusura degli stream
-			out.close();
-			fileOutput.close();
-		}
 
-		@Override
-		public String toString() {
-			return this.C.toString();
-		}
-		
+	//AGGIUNTA DEI METODI PER LA SERIALIZZAZIONE E DE-SERIALIZZAZIONE DI C
+
+	//nuovo costruttore della classe QTMiner
+	public QTMiner(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException{
+		FileInputStream fileInput = new FileInputStream(fileName);
+		ObjectInputStream in = new ObjectInputStream(fileInput);
+		this.C = (ClusterSet) in.readObject();
+		//chiusura degli stream
+		in.close();
+		fileInput.close();
+	}
+
+	public void salva(String fileName) throws FileNotFoundException, IOException {
+		FileOutputStream fileOutput = new FileOutputStream(fileName);
+		ObjectOutputStream out = new ObjectOutputStream(fileOutput);
+		out.writeObject(this.C);
+		//chiusura degli stream
+		out.close();
+		fileOutput.close();
+	}
+
+	@Override
+	public String toString() {
+		return this.C.toString();
+	}
+
 }

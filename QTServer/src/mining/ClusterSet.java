@@ -8,12 +8,12 @@ import java.util.*;
 /**
  * Rappresenta un insieme di cluster
  * determinati da QT
- * @author Dileo Angela, Lorusso Claudia
+ * @author Lorusso Claudia, Dileo Angela
  */
 public class ClusterSet implements Iterable<Cluster>, Serializable{
 	private static final long serialVersionUID=1L;
 	/**
-	 * Array di Cluster
+	 * Set di Cluster
 	 */
 	private Set<Cluster> C = null;
 	
@@ -43,12 +43,16 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 	}
 	/**
 	 * Aggiunge un cluster
-	 * all'array di cluster
+	 * al set di cluster
 	 * @param c cluster da aggiungere al set
 	 */
 	void add(Cluster c) {
 		C.add(c);
 	}
+	
+	/**
+	 * @return numero di elementi che costituiscono il set di cluster
+	 */
 	int getSize() {
 		return C.size();
 	}
@@ -76,7 +80,7 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 	 * che descriva lo stato
 	 * di ciascun cluster in C.
 	 * @param data
-	 * @return
+	 * @return str 
 	 */
 	//@Override
 	public String toString(Data data) {
@@ -89,6 +93,11 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 		}
 		return str;
 	}
+	
+	/**
+	 * Override del metodo iterator.
+	 * Itera sul set di Cluster.
+	 */
 	@Override
 	public Iterator<Cluster> iterator() {
 		return C.iterator();

@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * Include l'implementazione dell'algoritmo
  * Quality Threshold
- * @author Claudia Lorusso2
+ * @author Lorusso Claudia, Dileo Angela
  */
 public class QTMiner implements Serializable{
 	/*
@@ -174,6 +174,15 @@ public class QTMiner implements Serializable{
 
 	//AGGIUNTA DEI METODI PER LA SERIALIZZAZIONE E DE-SERIALIZZAZIONE DI C
 
+	/**
+	 * Nuovo costruttore della classe QTMiner.
+	 * Apre il file identificato da fileName,
+	 * legge l'oggetto ivi memorizzato e lo assegna a C.
+	 * @param fileName Nome del file.
+	 * @throws FileNotFoundException Eccezione sollevata se il file non viene trovato.
+	 * @throws IOException Eccezione di tipo I/O.
+	 * @throws ClassNotFoundException Eccezione sollevata se la classe non è trovata.
+	 */
 	//nuovo costruttore della classe QTMiner
 	public QTMiner(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException{
 		FileInputStream fileInput = new FileInputStream(fileName);
@@ -184,6 +193,13 @@ public class QTMiner implements Serializable{
 		fileInput.close();
 	}
 
+	/**
+	 * Apre il file identificato da fileName e salva 
+	 * l'oggetto riferito da C in tale file.
+	 * @param fileName Nome del file.
+	 * @throws FileNotFoundException Eccezione sollevata se il file non viene trovato.
+	 * @throws IOException Eccezione di tipo I/O.
+	 */
 	public void salva(String fileName) throws FileNotFoundException, IOException {
 		FileOutputStream fileOutput = new FileOutputStream(fileName);
 		ObjectOutputStream out = new ObjectOutputStream(fileOutput);
@@ -193,6 +209,10 @@ public class QTMiner implements Serializable{
 		fileOutput.close();
 	}
 
+	/**
+	 * Override del metodo toString di Object.
+	 * Restituisce una stringa che rappresenta l'insieme dei cluster [???]
+	 */
 	@Override
 	public String toString() {
 		return this.C.toString();

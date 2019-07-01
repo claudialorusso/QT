@@ -15,12 +15,39 @@ import mining.QTMiner;
 import database.DatabaseConnectionException;
 import database.NoValueException;
 
+/**
+ * La classe estende la classe Thread che 
+ * gestisce la connessione alla socket.
+ * @author Lorusso Claudia, Dileo Angela
+ *
+ */
 public class ServerOneClient extends Thread {
+	/**
+	 * Socket che permette la connessione
+	 */
 	private Socket socket;
+	
+	/**
+	 * Stream di dati in input
+	 */
 	private ObjectInputStream in;
+	
+	/**
+	 * Stream di dati in output
+	 */
 	private ObjectOutputStream out;
+	/**
+	 * 
+	 */
 	private QTMiner qt;
 
+	/**
+	 * Costruttore di classe. 
+	 * Inizializza gli attributi di socket, in e out.
+	 * Avvia il thread.
+	 * @param s Socket
+	 * @throws IOException Eccezione di tipo I/O.
+	 */
 	public ServerOneClient(Socket s) throws IOException {
 		this.socket = s;
 		in = new ObjectInputStream(s.getInputStream());
@@ -28,6 +55,10 @@ public class ServerOneClient extends Thread {
 		start(); //avvio del thread
 	}
 
+	/**
+	 * Riscrive il metodo run della superclasse Thread
+	 * al fine di gestire le richieste dei client.
+	 */
 	public void run() {
 		Data data=null;
 		qt=null;

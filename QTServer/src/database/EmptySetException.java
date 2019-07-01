@@ -1,7 +1,7 @@
 package database;
 /**
  * Modella la restituzione di un resultset vuoto
- * @author Claudia Lorusso
+ * @author Lorusso Claudia, Dileo Angela
  */
 public class EmptySetException extends Exception {
 	private static final long serialVersionUID = 1L;

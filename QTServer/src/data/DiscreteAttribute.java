@@ -7,7 +7,7 @@ import java.util.TreeSet;
 /**
  * Estende la classe Attribute
  * e rappresenta un attributo discreto (categorico)
- * @author Dileo Angela, Lorusso Claudia
+ * @author Lorusso Claudia, Dileo Angela
  */
 public class DiscreteAttribute extends Attribute implements Iterable<String> {
 	private static final long serialVersionUID=1L;
@@ -37,7 +37,10 @@ public class DiscreteAttribute extends Attribute implements Iterable<String> {
 	private int getNumberOfDistinctValues() {
 		return values.size();
 	}
-
+	
+	/**
+	 * Metodo che restituisce un iteratore per la classe DiscreteAttribute ???
+	 */
 	@Override
 	public Iterator<String> iterator() {
 		return new StringIterator();

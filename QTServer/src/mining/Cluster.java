@@ -6,10 +6,9 @@ import data.Tuple;
 import java.io.Serializable;
 import java.util.*;
 
-
 /**
  * Modella un cluster
- * @author Dileo Angela, Lorusso Claudia
+ * @author Lorusso Claudia, Dileo Angela
  */
 public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 	private static final long serialVersionUID=1L;
@@ -86,7 +85,7 @@ public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializ
 	/**
 	 * Restituisce la cardinalita'
 	 * dell'insieme clusterizzato
-	 * @return grandezza dellinsieme
+	 * @return grandezza dell'insieme
 	 * gia' clusterizzato
 	 */
 	int  getSize(){
@@ -113,7 +112,7 @@ public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializ
 	 * <p>
 	 * 
 	 * @param data
-	 * @return
+	 * @return str
 	 */
 	
 	public String toString(Data data){
@@ -156,11 +155,19 @@ public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializ
 		return str;
 	}
 
+	/**
+	 * Restituisce un iteratore su clusteredData.
+	 */
 	@Override
 	public Iterator<Integer> iterator() {
 		return clusteredData.iterator();
 	}
 	
+	/**
+	 * Override del metodo compareTo dell'interfaccia Comparable.
+	 * Il comparatore confronta due cluster in base alla
+	 * popolosità restituendo -1 o 1
+	 */
 	@Override
 	public int compareTo(Cluster c2) {
 		if(this.getSize() > c2.getSize())

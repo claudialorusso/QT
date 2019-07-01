@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 /**
  * Modella l'entita' attributo
- * @author Dileo Angela, Lorusso Claudia
+ * @author Lorusso Claudia, Dileo Angela
  */
 public abstract class Attribute implements Serializable {
 	private static final long serialVersionUID=1L;

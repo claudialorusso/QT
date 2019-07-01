@@ -2,7 +2,7 @@ package data;
 /**
  * Estende la classe Attribute
  * e modella un attributo continuo
- * @author Dileo Angela, Claudia Lorusso
+ * @author Lorusso Claudia, Dileo Angela
  */
 public class ContinuousAttribute extends Attribute {
 	private static final long serialVersionUID=1L;

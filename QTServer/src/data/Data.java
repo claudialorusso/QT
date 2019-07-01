@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.SQLSyntaxErrorException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -158,12 +159,21 @@ public class Data implements Serializable {
 		int i=0;
 		int j;
 
-		for(Attribute a: getAttributeSchema()) {
+		/*for(Attribute a: getAttributeSchema()) {
 			transazioni=(i<this.getNumberOfAttributes()-1)?
 					(transazioni += a.getName() + ", ")
 					:(transazioni += a.getName() + " " + "\n");
 					i++;
+		}*/
+		
+		Iterator<Attribute> it = this.getAttributeSchema().iterator();
+		while(it.hasNext()){
+			transazioni=(i<this.getNumberOfAttributes()-1)?
+					(transazioni += it.next().getName() + ", ")
+					:(transazioni += it.next().getName() + " " + "\n");
+					i++;
 		}
+		
 		i=0;
 		while(i<getNumberOfExamples()){
 			j=0;

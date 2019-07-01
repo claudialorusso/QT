@@ -11,6 +11,6 @@ public class EmptySetException extends Exception {
 	 * nel caso in cui il resultset risulti vuoto.
 	 */
 	public EmptySetException(){
-		super("ERRORE: Resultset vuoto!");
+		super("ERROR: Resultset empty!");
 	}
 }

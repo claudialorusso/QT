@@ -16,6 +16,6 @@ public class NoValueException extends Exception {
 		super(msg);
 	}
 	public NoValueException() {
-		super("Valori non presenti!");
+		super("ERROR: Absent value!");
 	}
 }

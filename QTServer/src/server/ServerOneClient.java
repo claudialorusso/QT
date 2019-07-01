@@ -110,10 +110,10 @@ public class ServerOneClient extends Thread {
 				e.printStackTrace();
 			}catch (IOException e) {
 				try {
-					out.writeObject("ERRORE: non è possibile proseguire!");
+					out.writeObject("ERROR: It is not possible to continue...");
 					break;
 				} catch (IOException e1) {
-					System.out.println("Chiusura della connessione ["+socket.getPort()+"]... ");
+					System.out.println("Connection closed ["+socket.getPort()+"]... ");
 					break;
 				}finally{
 					try {

@@ -11,54 +11,120 @@ import java.util.*;
  * @author Lorusso Claudia, Dileo Angela
  */
 public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID=1L;
 	/**
-	 * Centroide, cioe' il punto
+	 * Tupla corrispondente al Centroide,
+	 * cioe' il punto
 	 * rappresentativo del cluster
 	 */
 	private Tuple centroid;
 	/**
-	 * L'insieme clusterizzato
+	 * Set di interi contenente l'id
+	 * delle tuple clusterizzate
+	 * presenti nel Cluster
 	 */
-	Set <Integer> clusteredData;
-	
+	private Set <Integer> clusteredData;
 	/**
-	 * Costruttore di default della
-	 * classe Cluster
-	 */
-	public Cluster(){
-		
-	}
-	/**
-	 * Secondo costruttore della
+	 * Costruttore della
 	 * classe Cluster,
 	 * assegna un valore al centroide,
-	 * crea un nuovo insieme di cluster
+	 * inizializza clusteredData
 	 * @param centroid centroide del cluster
 	 */
-	public Cluster(Tuple centroid){
+	Cluster(Tuple centroid){
 		this.centroid=centroid;
 		clusteredData =  new HashSet <Integer>();
 	}
 	/**
-	 * Acquisisce il valore del centroide
-	 * @return il valore del centroide
+	 * Acquisisce la tupla Centroide
+	 * @return tupla centroide
 	 */
-	public Tuple getCentroid(){
+	private Tuple getCentroid(){
 		return centroid;
 	}
-	
 	/**
-	 * restituisce true se 
+	 * Aggiunge l'id di una nuova
+	 * tupla clusterizzata in Data.
+	 * Restituisce true se
 	 * la tupla ha cambiato il suo cluster
-	 * @param id elemento da aggiungere all'arraySet
-	 * @return vero se la tupla ha modificato
-	 * il suo cluster
+	 * di appartenenza.
+	 * @param id posizone tupla da aggiungere a
+	 * ClusteredData
+	 * @return true se la tupla ha modificato
+	 * il suo cluster di appartenenza, false altrimenti
 	 */
 	boolean addData(int id){
 		return clusteredData.add(id);
 	}
-	
+	/**
+	 * Restituisce la cardinalita'
+	 * del Cluster
+	 * @return numero totale di tuple contenute nel Cluster
+	 */
+	int  getSize(){
+		return clusteredData.size();
+	}
+	/**
+	 * Override del toString di Object.
+	 * Salva in una stringa la tupla Centroide
+	 * del Cluster.
+	 * @return stringa contenente la tupla Centroide
+	 * del cluster
+	 */
+	@Override
+	public String toString(){
+		String str="Centroid=(";
+		for(int i=0;i<centroid.getLength();i++)
+			str+=centroid.get(i)+" ";
+		str+=")";
+		return str;
+	}
+	/**
+	 * Memorizza in una stringa
+	 * tutte le informazioni sul Cluster:</p>
+	 * -	il suo centroide</p>
+	 * -	le tuple contenute nel cluster</p>
+	 * -	la distanza tra la tupla ed il centroide</p>
+	 * -	la distanza media
+	 * @param data oggetto della classe Data
+	 * @return str stringa contenente le informazioni sul Cluster
+	 */
+	public String toString(Data data){
+		String str = toString().concat("\nExamples:\n");
+		Iterator<Integer> it=clusteredData.iterator();
+		while(it.hasNext()){
+			int i=it.next();
+			str+="[";
+			for(int j=0;j<data.getNumberOfAttributes();j++)
+				str+=data.getAttributeValue(i, j)+" ";
+			str+="] dist="+getCentroid().getDistance(data.getItemSet(i))+"\n";
+		}
+		str+="AvgDistance="+getCentroid().avgDistance(data,this.clusteredData)+"\n";
+		return str;
+	}
+	/**
+	 * Restituisce un iteratore su clusteredData.
+	 */
+	@Override
+	public Iterator<Integer> iterator() {
+		return clusteredData.iterator();
+	}
+	/**
+	 * Override del metodo compareTo dell'interfaccia Comparable.
+	 * Il comparatore confronta due Cluster in base alla
+	 * popolosità restituendo -1 o 1
+	 */
+	@Override
+	public int compareTo(Cluster c2) {
+		if(this.getSize() > c2.getSize())
+			return -1;
+		else
+			return 1;
+	}
+	/////////////////////////////////////////////////CANCELLARE?
 	/**
 	 * Verifica se una tupla e' clusterizzata
 	 * nell'array corrente:
@@ -77,102 +143,7 @@ public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializ
 	 * @param id identificativo della tupla da rimuovere
 	 */
 	private void removeTuple(int id){
-		//boolean test = false;
 		clusteredData.remove(id);
-		//test =true;
-		//return test;
-	}	
-	/**
-	 * Restituisce la cardinalita'
-	 * dell'insieme clusterizzato
-	 * @return grandezza dell'insieme
-	 * gia' clusterizzato
-	 */
-	int  getSize(){
-		return clusteredData.size();
 	}
-	/**
-	 * Override del toString di Object.
-	 * Mostra esplicitamente la posizione
-	 * del centroide corrente.
-	 * @return stringa contenente la posizione
-	 * del centroide corrente
-	 * (es. Centroid=(7.5) )
-	 */
-	@Override
-	public String toString(){
-		String str="Centroid=( ";
-		for(int i=0;i<centroid.getLength();i++)
-			str+=centroid.get(i)+" ";
-		str+=")";
-		return str;
-	}
-	/**
-	 * Override del toString di Object.
-	 * <p>
-	 * 
-	 * @param data
-	 * @return str
-	 */
-	
-	public String toString(Data data){
-		String str="Centroid=(";
-		/*
-		 * mostra la posizione del centroide corrente
-		 */
-		for(int i=0;i<centroid.getLength();i++)
-			str+=centroid.get(i)+ " ";
-		str+=")\nExamples:\n";
-		
-		//definisco l'iteratore su clusteredData
-		Iterator<Integer> it=clusteredData.iterator();
-		
-		while(it.hasNext()){
-			int i=it.next();
-			str+="[";
-			
-			/*
-			 * Per ogni elemento clusterizzato,
-			 * per ogni elemento in data,
-			 * prendo la posizione dell'elemento
-			 * clusterizzato, presente nell'array,
-			 * salvandola nella stringa.
-			 */
-			for(int j=0;j<data.getNumberOfAttributes();j++)
-				str+=data.getAttributeValue(i, j)+" ";
-			
-			/* vado in data ed ottengo il valore
-			 * dell'attributo desiderato.
-			 * Ne calcolo in seguito la distanza
-			 * tra questo ed il centroide,
-			 * salvandola nella stringa.
-			 */
-			str+="] dist="+getCentroid().getDistance(data.getItemSet(i))+"\n";
-		}
-		
-		//mostro la distanza media con il centroide
-		str+="AvgDistance="+getCentroid().avgDistance(data,this.clusteredData)+"\n";
-		return str;
-	}
-
-	/**
-	 * Restituisce un iteratore su clusteredData.
-	 */
-	@Override
-	public Iterator<Integer> iterator() {
-		return clusteredData.iterator();
-	}
-	
-	/**
-	 * Override del metodo compareTo dell'interfaccia Comparable.
-	 * Il comparatore confronta due cluster in base alla
-	 * popolosità restituendo -1 o 1
-	 */
-	@Override
-	public int compareTo(Cluster c2) {
-		if(this.getSize() > c2.getSize())
-			return -1;
-		else
-			return 1;
-	}
+	/////////////////////////////////////////////////////////////////
 }

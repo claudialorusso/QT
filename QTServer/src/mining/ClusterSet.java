@@ -1,57 +1,72 @@
 package mining;
 
 import data.Data;
-
 import java.io.Serializable;
 import java.util.*;
 
 /**
- * Rappresenta un insieme di cluster
- * determinati da QT
+ * Rappresenta un Set di Cluster
+ * determinati per mezzo dell'algoritmo
+ * Quality Threshold.
  * @author Lorusso Claudia, Dileo Angela
  */
 public class ClusterSet implements Iterable<Cluster>, Serializable{
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID=1L;
 	/**
 	 * Set di Cluster
 	 */
 	private Set<Cluster> C = null;
-	
-	public ClusterSet(boolean test) {
-		C=new TreeSet<Cluster>(new Comparator<Cluster>() {
-			//anonymous class
-			@Override
-			public int compare(Cluster c1, Cluster c2) {
-				/*if(c1.getSize()>c2.getSize())
-					return -1;
-				else if(c1.getSize()<=c2.getSize())
-					return 1;
-				else */return c1.compareTo(c2);
-			}
-		});
-	}
-	
-	Cluster last() {
-		return ((TreeSet<Cluster>) C).last();
-	}
-	//////////////////////////forse non serve
-	Cluster first() {
-		return ((TreeSet<Cluster>) C).first();
-	}
+	/**
+	 * Costruttore della classe ClusterSet.
+	 */
 	ClusterSet() {
 		C= new TreeSet<Cluster>();
 	}
 	/**
-	 * Aggiunge un cluster
-	 * al set di cluster
+	 * Costruttore della classe ClusterSet
+	 * ordinato tramite l'interfaccia Comparator. 
+	 * @param test valore booleano che permette
+	 * di selezionare questo costruttore
+	 * piuttosto che l'altro.
+	 */
+	ClusterSet(boolean test) {
+		C=new TreeSet<Cluster>(
+				new Comparator<Cluster>() {
+					/**
+					 * Classe anonima che permette di implementare
+					 * l'interfaccia Comparator, in modo da poter riordinare
+					 * il ClusterSet tramite il metodo
+					 * compare.</p>
+					 * L'ultimo Cluster sara' quello piu' popoloso.
+					 */
+					@Override
+					public int compare(Cluster c1, Cluster c2) {
+						return c1.compareTo(c2);
+					}
+				});
+	}
+	/**
+	 * Permette di selezionare l'ultimo Cluster
+	 * del ClusterSet, corrispondente a quello
+	 * piu' popoloso.
+	 * @return ultimo Cluster nel Set, quello piu' popoloso.
+	 */
+	Cluster last() {
+		return ((TreeSet<Cluster>) C).last();
+	}
+	/**
+	 * Aggiunge un Cluster
+	 * al ClusterSet
 	 * @param c cluster da aggiungere al set
 	 */
 	void add(Cluster c) {
 		C.add(c);
 	}
-	
 	/**
-	 * @return numero di elementi che costituiscono il set di cluster
+	 * @return numero di Cluster presenti nel ClusterSet
 	 */
 	int getSize() {
 		return C.size();
@@ -61,8 +76,8 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 	 * di Object.
 	 * <p>
 	 * Restituisce una stringa
-	 * fatta da ciascun centroide
-	 * dell'insieme dei cluster
+	 * contenente i vari centroidi dei Cluster
+	 * contenuti nel ClusterSet.
 	 */
 	@Override
 	public String toString() {
@@ -74,15 +89,13 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 		return str;
 	}
 	/**
-	 * Override del metodo toString di Object.
-	 * <p>
 	 * Restituisce una stringa
 	 * che descriva lo stato
-	 * di ciascun cluster in C.
-	 * @param data
-	 * @return str 
+	 * di ciascun Cluster nel ClusterSet.
+	 * @param data oggetto di tipo Data
+	 * @return str stringa che descrive lo stato
+	 * dei Cluster nel ClusterSet. 
 	 */
-	//@Override
 	public String toString(Data data) {
 		int i = 0;
 		String str="";
@@ -93,10 +106,9 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 		}
 		return str;
 	}
-	
 	/**
-	 * Override del metodo iterator.
-	 * Itera sul set di Cluster.
+	 * Override del metodo iterator.</p>
+	 * Itera sul ClusterSet
 	 */
 	@Override
 	public Iterator<Cluster> iterator() {

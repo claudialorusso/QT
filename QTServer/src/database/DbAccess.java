@@ -1,16 +1,16 @@
 package database;
-/**
- * Realizza l'accesso alla base di dati.
- */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * Realizza l'accesso alla base di dati.
+ * @author Lorusso Claudia, Dileo Angela
+ */
 public class DbAccess {
 	/**
 	 * Nome del Driver
 	 */
-	//private String DRIVER_CLASS_NAME = "org.gjt.mm.mysql.Driver";
 	private String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 	/**
 	 * Indirizzo dbms
@@ -35,7 +35,7 @@ public class DbAccess {
 	/**
 	 * Password per accesso al db
 	 */
-	private final String PASSWORD = "map";/////////////////////////////TRANSIENT?
+	private final String PASSWORD = "map";
 	/**
 	 *Gestisce la connessione
 	 */
@@ -52,8 +52,8 @@ public class DbAccess {
 	public void initConnection() throws DatabaseConnectionException{
 		try {
 			Class.forName(DRIVER_CLASS_NAME).newInstance();
-			String str = DBMS + "://" + SERVER + ":" + PORT + "/" + DATABASE + TIMEZONE;//
-			conn = DriverManager.getConnection(str,USER_ID,PASSWORD);////////////////////METODO STATICO, SERIALIZZAZIONE?
+			String str = DBMS + "://" + SERVER + ":" + PORT + "/" + DATABASE + TIMEZONE;
+			conn = DriverManager.getConnection(str,USER_ID,PASSWORD);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new DatabaseConnectionException();

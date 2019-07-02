@@ -33,29 +33,46 @@ public class DiscreteAttribute extends Attribute implements Iterable<String> {
 	 * Restituisce la dimensione di values
 	 * @return dimensione di values
 	 */
-	////////////////////////////////////////////////VISIBILITA'
 	private int getNumberOfDistinctValues() {
 		return values.size();
 	}
-	
 	/**
-	 * Metodo che restituisce un iteratore per la classe DiscreteAttribute ???
+	 * Restituisce un iteratore per la classe DiscreteAttribute.
 	 */
 	@Override
 	public Iterator<String> iterator() {
 		return new StringIterator();
 	}
-
-	//inner class
+	/**
+	 * Inner Class di DiscreteAttribute.</p>
+	 * Implementazione dell'iteratore di DiscreteAttribute.</p>
+	 * (Abbiamo deciso di metterci alla prova
+	 * e di implementare i metodi dell'interfaccia Iterator<String>
+	 * in modo che facessero esattamente lo stesso lavoro di quelli
+	 * già implementati di default).
+	 * @author Claudia Lorusso, Dileo Angela
+	 */
 	class StringIterator implements Iterator<String>{
+		/**
+		 * conta gli elementi nel TreeSet
+		 */
 		private int count = -1;
+		/**
+		 * Valore corrente
+		 */
 		private String current = ((TreeSet<String>)values).first();
+		/**
+		 * Verifica se c'è un elemento successivo a quello corrente.
+		 */
 		@Override
 		public boolean hasNext() {
 			if(count<getNumberOfDistinctValues())
 				return true;
 			else return false;
 		}
+		/**
+		 * Estrapola l'elemento successivo.
+		 */
 		@Override
 		public String next() {
 			count++;
@@ -65,8 +82,5 @@ public class DiscreteAttribute extends Attribute implements Iterable<String> {
 				return current=((TreeSet<String>)values).ceiling(current);
 			else return null;
 		}
-		@Override
-		public void remove() {}
 	}
-
 }

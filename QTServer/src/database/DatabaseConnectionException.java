@@ -1,11 +1,13 @@
 package database;
 /**
- * 
- * @author Lorusso Claudia, Dileo Angela
  * Modella il fallimento di una connessione
  * al database.
+ * @author Lorusso Claudia, Dileo Angela
  */
 public class DatabaseConnectionException extends Exception {
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * Costruttore della classe DatabaseConnectionException.

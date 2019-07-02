@@ -16,7 +16,6 @@ public abstract class Attribute implements Serializable {
 	 */
 	private int index;
 	/**
-	 * 
 	 * Inizializza i valori di name ed index
 	 * @param name Nome simbolico dell'attributo
 	 * @param index Identificativo numerico dell'attributo
@@ -26,7 +25,7 @@ public abstract class Attribute implements Serializable {
 		this.index = index;
 	}
 	/**
-	 * Restituisce il nome
+	 * Restituisce il nome dell'attributo
 	 * @return nome dell'attributo
 	 */
 	public String getName(){
@@ -34,14 +33,14 @@ public abstract class Attribute implements Serializable {
 	}
 	/**
 	 * Restituisce l'identificativo numerico dell'attributo
-	 * @return
+	 * @return identificativo numerico dell'Attribute
 	 */
 	public int getIndex(){
 		return index;
 	}
 	/**
 	 * Override di toString di Object,
-	 * restituisce il nome
+	 * restituisce il nome dell'attributo
 	 */
 	@Override
 	public String toString(){

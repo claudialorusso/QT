@@ -10,7 +10,8 @@ import java.util.*;
  * Modella un cluster
  * @author Lorusso Claudia, Dileo Angela
  */
-public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
+//public
+class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 	/**
 	 * ID di serializzazione
 	 */
@@ -117,7 +118,7 @@ public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializ
 	 * Il comparatore confronta due Cluster in base alla
 	 * popolosità restituendo -1 o 1
 	 */
-	@Override
+	@Override 
 	public int compareTo(Cluster c2) {
 		if(this.getSize() > c2.getSize())
 			return -1;

@@ -1,11 +1,11 @@
 package database;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 /**
  *  Modella lo schema di una tabella nel database relazionale
@@ -14,7 +14,7 @@ public class Table_Schema {
 	/**
 	 * Permette l'accesso al Database
 	 */
-	DbAccess db;
+	private DbAccess db;
 	/**
 	 * Inner Class.
 	 * Modella una colonna della tabella.
@@ -66,9 +66,9 @@ public class Table_Schema {
 	}
 	/**
 	 * Schema della tabella
-	 * realizzato tramite una lista di colonne.
+	 * realizzato tramite una lista di Column (colonne).
 	 */
-	List<Column> tableSchema=new ArrayList<Column>();
+	private List<Column> tableSchema=new ArrayList<Column>();
 	/**
 	 * Costruttore di Table_Schema.
 	 * Modella lo schema della tabella inserendo
@@ -91,7 +91,7 @@ public class Table_Schema {
 		mapSQL_JAVATypes.put("FLOAT","number");
 		mapSQL_JAVATypes.put("DOUBLE","number");
 
-		Connection con=db.getConnection();
+		Connection con=this.db.getConnection();
 		DatabaseMetaData meta = con.getMetaData();
 		ResultSet res = meta.getColumns(null, null, tableName, null);
 
@@ -107,8 +107,8 @@ public class Table_Schema {
 	}
 	/**
 	 * Restituisce il numero di attributi
-	 * e dunque il numero di colonne della tabella///////////////////////////
-	 * @return
+	 * e dunque il numero di colonne della tabella.
+	 * @return numero di attributi
 	 */
 	public int getNumberOfAttributes(){
 		return tableSchema.size();

@@ -4,22 +4,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Modella una transazione letta dalla base di dati.
+ * Modella una transazione/tupla/esempio letto dalla base di dati.
  */
 public class Example implements Comparable<Example>, Serializable{
 	/**
-	 * 
+	 * ID di serializzazione
 	 */
-	private static final long serialVersionUID = 1569306353202202903L;
+	private static final long serialVersionUID = 1L;
 	/**
-	 * Lista di oggetti(Item) contenuti nella tupla example/////////////////
+	 * Lista di oggetti(corrispondenti agli Items) contenuti nella tupla/example
 	 */
 	private List<Object> example=new ArrayList<Object>();
 	/**
 	 * Aggiunge un item nella tupla
 	 * @param o item da aggiungere nella tupla
 	 */
-	public void add(Object o){
+	void add(Object o){
 		example.add(o);
 	}
 	/**
@@ -39,6 +39,7 @@ public class Example implements Comparable<Example>, Serializable{
 	 * minore, uguale o maggiore dell'item con cui lo si sta
 	 * confrontando.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public int compareTo(Example ex) {
 		int i=0;
 		for(Object o:ex.example){

@@ -1,14 +1,8 @@
 package database;
 
-
-//Ridevi tutte le visibilita'
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +17,7 @@ public class Table_Data {
 	/**
 	 * Permette l'accesso al database.
 	 */
-	DbAccess db;
+	private DbAccess db;
 	/**
 	 * Costruttore della classe Table_Data.
 	 * Fornisce l'accesso al database.
@@ -91,10 +85,10 @@ public class Table_Data {
 	 * Formula ed esegue una interrogazione SQL
 	 * per:
 	 * <p>
-	 * .	estrarre i valori distinti ordinati
+	 * -	estrarre i valori distinti ordinati
 	 * 		di column
 	 * <p>
-	 * .	popolare un insieme da restituire
+	 * -	popolare un insieme da restituire
 	 * @param table nome della tabella
 	 * @param column nome della colonna della tabella
 	 * @return insieme di valori distinti ordinati
@@ -108,7 +102,7 @@ public class Table_Data {
 	public Set<Object> getDistinctColumnValues(String table,Column column) throws SQLException{
 		Set<Object> valueSet = new TreeSet<Object>();
 		Statement statement;
-		Table_Schema tSchema=new Table_Schema(db,table);
+		//Table_Schema tSchema=new Table_Schema(db,table);////////////////////////////////////////
 
 		String query="select distinct ";
 
@@ -147,9 +141,9 @@ public class Table_Data {
 	 * @throws NoValueException se il resultset e' vuoto
 	 * o il valore calcolato e' pari a null
 	 */
-	public  Object getAggregateColumnValue(String table,Column column,QUERY_TYPE aggregate) throws SQLException,NoValueException{
+	public Object getAggregateColumnValue(String table,Column column,QUERY_TYPE aggregate) throws SQLException,NoValueException{
 		Statement statement;
-		Table_Schema tSchema=new Table_Schema(db,table);
+		//Table_Schema tSchema=new Table_Schema(db,table);/////////////////////////////
 		Object value=null;
 		String aggregateOp="";
 

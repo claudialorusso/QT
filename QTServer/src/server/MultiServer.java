@@ -9,7 +9,8 @@ import java.net.Socket;
  * @author Claudia Lorusso, Angela Dileo
  *
  */
-public class MultiServer{
+//public
+class MultiServer{
 	/**
 	 * Porta a cui si deve connetere il server
 	 * per interagire con il client

@@ -62,15 +62,16 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 	 * al ClusterSet
 	 * @param c cluster da aggiungere al set
 	 */
+	
 	void add(Cluster c) {
 		C.add(c);
 	}
 	/**
 	 * @return numero di Cluster presenti nel ClusterSet
 	 */
-	int getSize() {
+	/*int getSize() {
 		return C.size();
-	}
+	}*/
 	/**
 	 * Override del metodo toString
 	 * di Object.

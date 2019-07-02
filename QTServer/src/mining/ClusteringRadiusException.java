@@ -13,7 +13,8 @@ public class ClusteringRadiusException extends Exception{
 	/**
 	 * Costruttore della classe ClusteringRadiusException.
 	 */
-	public ClusteringRadiusException() {}
+	//public
+	ClusteringRadiusException() {}
 	/**
 	 * Secondo costruttore della classe ClusteringRadiusException.</p>
 	 * Stampa a video un messaggio quando il valore del raggio
@@ -21,7 +22,8 @@ public class ClusteringRadiusException extends Exception{
 	 * un unico Cluster.
 	 * @param tuple numero di tuple
 	 */
-	public ClusteringRadiusException(int tuple) {
+	//public
+	ClusteringRadiusException(int tuple) {
 		super("This radius value puts "+tuple+" tuple into one cluster!");
 	}
 }

@@ -17,10 +17,11 @@ import database.NoValueException;
 /**
  * Estende la classe Thread e
  * gestisce la connessione alla socket.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  *
  */
-public class ServerOneClient extends Thread {
+//public
+class ServerOneClient extends Thread {
 	/**
 	 * Socket che permette la connessione
 	 */
@@ -46,7 +47,8 @@ public class ServerOneClient extends Thread {
 	 * @param s Socket
 	 * @throws IOException Eccezione di tipo I/O.
 	 */
-	public ServerOneClient(Socket s) throws IOException {
+	//public
+	ServerOneClient(Socket s) throws IOException {
 		this.socket = s;
 		in = new ObjectInputStream(s.getInputStream());
 		out = new ObjectOutputStream(s.getOutputStream());

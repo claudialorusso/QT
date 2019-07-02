@@ -4,11 +4,15 @@
 //  Facilitates keyboard input by abstracting details about input
 //  parsing, conversions, and exception handling.
 //********************************************************************
-
 package keyboardinput;
 import java.io.*;
 import java.util.*;
-
+/**
+ * <p>prova</p>
+ * ciao
+ * @author Claudia Lorusso
+ *
+ */
 public class Keyboard {
 	// ************* Error Handling Section **************************
 	

@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
 import database.DatabaseConnectionException;
 import database.DbAccess;
 import database.EmptySetException;
@@ -22,23 +21,20 @@ import database.Table_Data;
 import database.Table_Schema;
 /**
  * Modella l'insieme di tuple
- * anche dette transizioni
+ * anche dette transizioni o esempi(Examples)
  * @author Dileo Angela, Lorusso Claudia
  */
 public class Data implements Serializable {
-	
 	/**
-	 * 
+	 * ID di serializzazione
 	 */
-	private static final long serialVersionUID = 8785322021794956318L;
-	//private Object data[][];
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Lista di Example/tuple
 	 */
 	private List<Example> data = new ArrayList<Example>();
 	/**
-	 * cardinalita' dell'insieme di tuple,
-	 * cioe' il numero di righe in data,
+	 * Cardinalita' dell'insieme di tuple,
 	 * cioe' numero di tuple in data
 	 */
 	private int numberOfExamples;
@@ -47,16 +43,20 @@ public class Data implements Serializable {
 	 * cioe' lo schema della tabella di dati
 	 */
 	private List<Attribute> attributeSet = new LinkedList<Attribute>();
-
 	/**
-	 * 
-	 * Costruttore della classe Data/////////////////////////////////////
+	 * Costruttore della classe Data. </p>
+	 * Preleva da una tabella presente nel database
+	 * i dati necessaria ll'inizializzazione di Data.
+	 * Preleva i valori da inserire in DescreteAttribute ed in
+	 * ContinuousAttribute.
 	 * @param tableName nome della tabella da cui prelevare
 	 * i dati nel Database
-	 * @throws DatabaseConnectionException
-	 * @throws SQLException
-	 * @throws EmptyDatasetException
-	 * @throws TableNotFoundException
+	 * @throws DatabaseConnectionException nel caso di errori durante la connessione al DB
+	 * @throws SQLException in presenza di errori nella esecuzione della query
+	 * @throws EmptyDatasetException nel caso in cui il DataSet dovesse risultare vuoto
+	 * @throws TableNotFoundException nel caso in cui non esistesse la tabella all'interno del
+	 * database
+	 * @throws NoValueException se il resultset e' vuoto o il valore calcolato e' pari a null
 	 */
 	public Data(String tableName) throws DatabaseConnectionException, SQLException, EmptyDatasetException,TableNotFoundException, NoValueException{
 		try{
@@ -78,13 +78,12 @@ public class Data implements Serializable {
 								double minTemp = (float) table.getAggregateColumnValue(tableName, tschema.getColumn(i), QUERY_TYPE.MIN);
 								attribute = new ContinuousAttribute(tschema.getColumn(i).getColumnName(),i,minTemp,maxTemp);
 							}else {
-								/**
-								 * Set temporaneo in cui memorizzo i values
+								/*Set temporaneo in cui memorizzo i values
 								 * privi di duplicati da passare al costruttore
 								 * DiscreteAttribute
 								 */
 								Set<String> values = new TreeSet<String>();
-								/**
+								/*
 								 * Valori effettivamente contenuti in Data
 								 */
 								Set<Object> efValues = table.getDistinctColumnValues(tableName, tschema.getColumn(i));
@@ -96,7 +95,7 @@ public class Data implements Serializable {
 							attributeSet.add(attribute);
 						}
 					}else throw new EmptyDatasetException();
-					//db.closeConnection();
+					//////////////////////////////////////////////db.closeConnection();
 				}else throw new TableNotFoundException(tableName);
 			}catch(SQLException ex2) {
 				System.out.println(ex2.getMessage());
@@ -131,18 +130,17 @@ public class Data implements Serializable {
 		return attributeSet;
 	}
 	/**
-	 * Restituisce il valore della matrice
-	 * data avendo in input una riga ed una colonna
-	 * @param exampleIndex indice di riga
-	 * @param attributeIndex riferimento alla matrice
-	 * memorizzata in data
+	 * Restituisce il valore della lista di Examples
+	 * 'data' avendo in input una riga ed una colonna
+	 * @param exampleIndex indiceche fa riferimento alla tupla di data
+	 * da cui estrapolare l'attributo
+	 * @param attributeIndex indice che fa riferimento all'attributo
 	 * @return valore assunto in data dall'attributo
 	 * in posizione attributeIndex,
-	 * nella riga in posizione exampleIndex
+	 * nella tupla in posizione exampleIndex
 	 */
 	public Object getAttributeValue(int exampleIndex, int attributeIndex){
 		return data.get(exampleIndex).get(attributeIndex);
-
 	}
 	/**
 	 * Override del metodo toString di Object.
@@ -152,20 +150,11 @@ public class Data implements Serializable {
 	 * e le tuple memorizzate in data
 	 * opportunamente numerate
 	 */
-	////////////////////////////////////////////////////IMPLEMENTARE ITERATORE
 	@Override
 	public String toString() throws NullPointerException{
 		String transazioni = new String() ;
 		int i=0;
 		int j;
-
-		/*for(Attribute a: getAttributeSchema()) {
-			transazioni=(i<this.getNumberOfAttributes()-1)?
-					(transazioni += a.getName() + ", ")
-					:(transazioni += a.getName() + " " + "\n");
-					i++;
-		}*/
-		
 		Iterator<Attribute> it = this.getAttributeSchema().iterator();
 		while(it.hasNext()){
 			transazioni=(i<this.getNumberOfAttributes()-1)?
@@ -173,7 +162,6 @@ public class Data implements Serializable {
 					:(transazioni += it.next().getName() + " " + "\n");
 					i++;
 		}
-		
 		i=0;
 		while(i<getNumberOfExamples()){
 			j=0;
@@ -194,8 +182,8 @@ public class Data implements Serializable {
 	 * <p>
 	 * Nello specifico, memorizzo in tuple
 	 * l'Item discreto corrente.
-	 * @param index indice di riga da cui
-	 * prelevare l'attributo in Data
+	 * @param index indice di riferimento alla tupla
+	 * da cui prelevare l'attributo in Data
 	 * @return la tupla desiderata
 	 */
 	public Tuple getItemSet(int index) {
@@ -205,7 +193,9 @@ public class Data implements Serializable {
 		 * per ogni attributo presente nel set
 		 * memorizzo in tuple l'attributo discreto
 		 * ed il corrispondente valore discreto
-		 * in altre parole l'Item discreto corrente 
+		 * in altre parole l'Item discreto corrente;
+		 * stessa cosa vale nel caso in cui
+		 * l'attribute sia continuo.
 		 */
 		for(Attribute a: attributeSet) {
 			if (a instanceof DiscreteAttribute) {
@@ -221,9 +211,9 @@ public class Data implements Serializable {
 	/**
 	 * Inner class che permette di verificare
 	 * se il nome della tabella da cercare nel database
-	 * corrisponde ad una tabella nel database o meno.
-	 * @author Claudia Lorusso
-	 *
+	 * corrisponda o meno ad una tabella effettivamente presente
+	 * nel database.
+	 * @author Claudia Lorusso, Dileo Angela
 	 */
 	static class TableVerify{
 		static boolean tableExists(Connection conn, String tableName) throws SQLException,SQLSyntaxErrorException {
@@ -240,9 +230,4 @@ public class Data implements Serializable {
 			return tExists;
 		}
 	}
-
-	/*	public static void main(String args[]){
-		Data dataSet = new Data();
-		System.out.println(dataSet);
-	}*/
 }

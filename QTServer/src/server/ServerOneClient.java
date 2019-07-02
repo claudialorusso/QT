@@ -6,7 +6,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.SQLException;
-
 import data.Data;
 import data.EmptyDatasetException;
 import data.TableNotFoundException;
@@ -16,7 +15,7 @@ import database.DatabaseConnectionException;
 import database.NoValueException;
 
 /**
- * La classe estende la classe Thread che 
+ * Estende la classe Thread e
  * gestisce la connessione alla socket.
  * @author Lorusso Claudia, Dileo Angela
  *
@@ -40,7 +39,6 @@ public class ServerOneClient extends Thread {
 	 * 
 	 */
 	private QTMiner qt;
-
 	/**
 	 * Costruttore di classe. 
 	 * Inizializza gli attributi di socket, in e out.
@@ -54,11 +52,11 @@ public class ServerOneClient extends Thread {
 		out = new ObjectOutputStream(s.getOutputStream());
 		start(); //avvio del thread
 	}
-
 	/**
 	 * Riscrive il metodo run della superclasse Thread
 	 * al fine di gestire le richieste dei client.
 	 */
+	@Override
 	public void run() {
 		Data data=null;
 		qt=null;
@@ -69,7 +67,7 @@ public class ServerOneClient extends Thread {
 				System.out.println(socket.toString());
 				System.out.print("\tThe client is ");
 				switch(cases){
-				case 0://storeTableFromDb()
+				case 0://store Table From Db
 					System.out.println("storing a table from the Db");
 					String table = ((String)this.in.readObject());
 					try{
@@ -84,7 +82,7 @@ public class ServerOneClient extends Thread {
 						out.writeObject(e.getMessage());
 					}
 					break;
-				case 1://learningFromDbTable()
+				case 1://learning From Db Table
 					System.out.println("learning a table from the Db");
 					out.writeObject(data.toString());
 					//readIN Radius
@@ -100,7 +98,7 @@ public class ServerOneClient extends Thread {
 						System.out.println(e.getMessage());
 					}
 					break;
-				case 2://storeClusterInFile()
+				case 2://store Cluster In File
 					try {
 						System.out.println("is storing the ClusterSet into a file");
 						String file = (String) in.readObject();
@@ -114,11 +112,10 @@ public class ServerOneClient extends Thread {
 						out.writeObject(e.getMessage());
 					}
 					break;
-				case 3: // learningFromFile()
+				case 3: // learning From File
 					System.out.println("learning a ClusterSet from a file.");
 					String fileName = ((String) this.in.readObject());
 					try {
-						//data = new Data(table);
 						if(fileName!=null) {
 							out.writeObject("OK");
 							qt = new QTMiner(fileName);
@@ -138,7 +135,7 @@ public class ServerOneClient extends Thread {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}catch (IOException e) {
 				try {
 					out.writeObject("ERROR: It is not possible to continue...");
@@ -149,8 +146,6 @@ public class ServerOneClient extends Thread {
 				}finally{
 					try {
 						socket.close();
-						//out.close();
-						//in.close();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}

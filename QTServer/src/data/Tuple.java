@@ -1,16 +1,18 @@
 package data;
 import java.io.Serializable;
 import java.util.*;
-
 /**
  * Rappresenta una tupla come sequenza di
  * coppie attributo-valore
  * @author Dileo Angela, Lorusso Claudia
  */
 public class Tuple implements Serializable{
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID=1L;
 	/**
-	 * Vettore di Item
+	 * Vettore di Item che compongono una tupla
 	 */
 	private Item[] tuple;
 	/**
@@ -21,43 +23,41 @@ public class Tuple implements Serializable{
 		this.tuple=new Item[size];
 	}
 	/**
-	 * Restituisce la lunghezza delle tuple
-	 * @return la lunghezza delle tuple
+	 * Restituisce la lunghezza della tupla
+	 * @return la lunghezza della tupla
 	 */
 	public int getLength() {
 		return tuple.length;
 	}
 	/**
-	 * Restituisce l'item in posizione i
-	 * @param i posizione
-	 * @return l'item in posizione i
+	 * Restituisce l'item in posizione i-esima
+	 * @param i posizione dell'item da estrapolare
+	 * dalla tupla
+	 * @return l'item in posizione i-esima
 	 */
 	public Item get(int i) {
 		return tuple[i];
 	}
 	/**
-	 * memorizza l'item c
+	 * Memorizza l'item c
 	 * nella posizione i-esima di tuple
 	 * @param c item da memorizzare in tuple
 	 * @param i posizione di tuple in cui memorizzare c
 	 */
 	void add(Item c, int i) {
 		tuple[i]=c;
-		//test=true;
-		//return test;
 	}
 	/**
 	 * Determina la distanza tra
 	 * la tupla riferita da obj
-	 * e la tupla corrente (riferita da this).
+	 * e la tupla corrente.
 	 * <p>
-	 * La distanza e' ottenuta come la somma
+	 * La distanza corrisponde alla somma
 	 * delle distanze tra gli Item in posizioni uguali
 	 * nelle due tuple.
 	 * @param obj tupla da cui determinare la distanza
 	 * @return distanza tra la tupla riferita da obj e quella corrente
 	 */
-	//////////////////////////////////////////////////////////////////////////
 	public double getDistance (Tuple obj) {
 		double distanza=0.0;
 		int i=0;
@@ -66,24 +66,17 @@ public class Tuple implements Serializable{
 		}
 		return distanza;
 	}
-
 	/**
 	 * Restituisce la media delle distanze
-	 * tra la tupla corrente e quelle ottenibili
-	 * dalle righe della matrice in data
-	 * aventi l'indice in ClusteredData
-	 * @param data matrice nXm di tipo Object
-	 * dove ogni riga modella una tupla
+	 * tra le tuple contenute nel Cluster
+	 * nelle posizioni specificate dal Set clusteredData
+	 * @param data oggetto di tipo Data da cui
+	 * estrapolare i vari Items
 	 * @param clusteredData l'insieme clusterizzato
-	 * @return distanza media 
+	 * @return distanza media tra le tuple nel cluster
 	 */
 	public double avgDistance(Data data, Set<Integer> clusteredData) {
 		double p=0.0,sumD=0.0;
-		/*for(int i=0;i<clusteredData.length;i++) {
-			double d=getDistance(data.getItemSet(clusteredData[i]));
-			sumD+=d;
-		}
-		p=sumD/clusteredData.length;*/
 		Iterator<Integer> it = clusteredData.iterator();
 		while(it.hasNext()){
 			int i = it.next();
@@ -93,5 +86,4 @@ public class Tuple implements Serializable{
 		p=sumD/clusteredData.size();
 		return p;
 	}
-
 }

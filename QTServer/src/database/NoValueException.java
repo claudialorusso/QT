@@ -12,14 +12,16 @@ public class NoValueException extends Exception {
 	 * @param msg messaggio di errore
 	 * dovuto all'assenza di un valore all'interno di un Resultet
 	 */
-	public NoValueException(String msg) {
+	//public
+	NoValueException(String msg) {
 		super(msg);
 	}
 	/**
 	 * Costruttore di default della classe con messaggio
 	 * di default.
 	 */
-	public NoValueException() {
+	//public
+	NoValueException() {
 		super("ERROR: Absent value!");
 	}
 }

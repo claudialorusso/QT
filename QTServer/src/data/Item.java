@@ -9,6 +9,9 @@ import java.io.Serializable;
  * @author Dileo Angela, Lorusso Claudia
  */
 public abstract class Item implements Serializable {
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID=1L;
 	/**
 	 * Attributo coinvolto nell'Item
@@ -28,26 +31,26 @@ public abstract class Item implements Serializable {
 		this.value = value;
 	}
 	/**
-	 * Restituisce attribute
-	 * @return l'attributo coinvolto nell'Item
+	 * Restituisce l'attributo contenuto nell'Item
+	 * @return l'attributo conteuto nell'Item
 	 */
 	public Attribute getAttribute(){
 		return this.attribute;
 	}
 	/**
-	 * Restituisce value
-	 * @return il valore assegnato all'attributo
+	 * Restituisce il valore associato all'attributo
+	 * @return il valore associato all'attributo
 	 */
 	public Object getValue(){
 		return this.value;
 	}
 	/**
-	 * Override del metodo toString di Object
-	 * Restituisce value
+	 * Override del metodo toString di Object.</p>
+	 * Restituisce una stringa contenente il value.
 	 */
 	@Override
 	public String toString(){
-			return this.value.toString();
+		return this.value.toString();
 	}
 	/**
 	 * Metodo astratto che sara'
@@ -55,8 +58,9 @@ public abstract class Item implements Serializable {
 	 * con diverse implementazioni,
 	 * la distanza per l'item astratto
 	 * e per quello continuo
-	 * @param a tupla in input ////////////////////////////////////////
-	 * @return
+	 * @param a oggetto contenente il valore
+	 * di cui bisgona calcolare la distanza
+	 * @return distanza tra due Item
 	 */
 	abstract double distance(Object a);
 }

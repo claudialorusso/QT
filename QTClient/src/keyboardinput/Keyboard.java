@@ -25,32 +25,36 @@ public class Keyboard {
 	 * Acquisisce il numero corrente di errori.
 	 * @return il conteggio corrente di errori.
 	 */
-	public static int getErrorCount() {
+	//public
+	/*private static int getErrorCount() {
 		return errorCount;
-	}
+	}*/
 	/**
 	 * Reimposta il numero corrente di errori a zero.
 	 * @param count numero di errori.
 	 */
-	public static void resetErrorCount(int count) {
+	//public
+	/*private static void resetErrorCount(int count) {
 		errorCount = 0;
-	}
+	}*/
 	/**
 	 * Acquisisce printErrors
 	 * @return
 	 */
-	public static boolean getPrintErrors() {
+	//public
+	/*private static boolean getPrintErrors() {
 		return printErrors;
-	}
+	}*/
 	/**
 	 * Imposta printErrors ad un certo valore booleano a seconda che stia
 	 * per avvenire una stampa di un errore o meno.
 	 * @param flag true o false a seconda che stia per avvenire una stampa
 	 * di un errore o meno.
 	 */
-	public static void setPrintErrors(boolean flag) {
+	//public
+	/*private static void setPrintErrors(boolean flag) {
 		printErrors = flag;
-	}
+	}*/
 	/**
 	 * Incrementa il numero di errori e stampa
 	 * a video il messaggio di errore appropriato.
@@ -137,7 +141,8 @@ public class Keyboard {
 	 * @return true se non ci sono altri token da leggere
 	 * sulla corrente riga di input.
 	 */
-	public static boolean endOfLine() {
+	//public
+	private static boolean endOfLine() {
 		return !reader.hasMoreTokens();
 	}
 
@@ -182,7 +187,8 @@ public class Keyboard {
 	 * Restituisce un booleano letto da standard input.
 	 * @return valore booleano letto da standard input.
 	 */
-	public static boolean readBoolean() {
+	//public
+	static boolean readBoolean() {
 		String token = getNextToken();
 		boolean bool;
 		try {
@@ -239,7 +245,8 @@ public class Keyboard {
 	 * Restituisce un long letto da standard input.
 	 * @return un long letto da standard input.
 	 */
-	public static long readLong() {
+	//public
+	static long readLong() {
 		String token = getNextToken();
 		long value;
 		try {
@@ -254,7 +261,8 @@ public class Keyboard {
 	 * Restituisce un float letto da standard input.
 	 * @return un float letto da standard input.
 	 */
-	public static float readFloat() {
+	//public
+	static float readFloat() {
 		String token = getNextToken();
 		float value;
 		try {

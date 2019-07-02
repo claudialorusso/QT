@@ -15,7 +15,8 @@ public class ServerException extends Exception {
 	/**
 	 * Costruttore di default, con messaggio personalizzato.
 	 */
-	public ServerException () {
+	//public
+	ServerException () {
 		super("Server connection error!");
 	}
 	/**
@@ -24,7 +25,8 @@ public class ServerException extends Exception {
 	 * @param result stringa contenente
 	 * la richiesta, errata, da parte del Client.
 	 */
-	public ServerException(String result) {
+	//public
+	ServerException(String result) {
 		super("ERROR: Invalid client request;\nMOTIVATION:'"+result+"'");////////////////////////////////////////
 	}
 }

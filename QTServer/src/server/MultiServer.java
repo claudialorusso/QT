@@ -3,7 +3,12 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+/**
+ * Classe che gestisce la connessione
+ * tra Client e Server.
+ * @author Claudia Lorusso, Angela Dileo
+ *
+ */
 public class MultiServer{
 	/**
 	 * Porta a cui si deve connetere il server
@@ -12,7 +17,7 @@ public class MultiServer{
 	private static int PORT=8080;
 	/**
 	 * Instanzia un oggetto di tipo MultiServer
-	 * @param args
+	 * @param args intero pari al numero di porta.
 	 */
 	public static void main(String[] args) {
 		int port=8080;
@@ -49,11 +54,10 @@ public class MultiServer{
 			System.out.println("ERROR: MAX 1 argument.");
 		}
 	}
-
 	/**
 	 * Costruttore di classe.
 	 * Inizializza la porta ed invoca run().
-	 * @param port
+	 * @param port valore da assegnare alla porta.
 	 */
 	private MultiServer(int port) throws IOException{
 		PORT = port;
@@ -68,7 +72,7 @@ public class MultiServer{
 	 */
 	private void run() throws IOException{
 		ServerSocket s = new ServerSocket(PORT);
-		System.out.println("Server Started");////////
+		System.out.println("Server Started");
 		try {
 			while(true) {
 				//Si blocca finche' non si verifica una connessione:

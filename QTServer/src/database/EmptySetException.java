@@ -13,7 +13,8 @@ public class EmptySetException extends Exception {
 	 * Stampa a video un messaggio di errore
 	 * nel caso in cui il resultset risulti vuoto.
 	 */
-	public EmptySetException(){
+	//public
+	EmptySetException(){
 		super("ERROR: Resultset empty!");
 	}
 }

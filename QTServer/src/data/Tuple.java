@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Rappresenta una tupla come sequenza di
  * coppie attributo-valore
- * @author Dileo Angela, Lorusso Claudia
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class Tuple implements Serializable{
 	/**
@@ -19,7 +19,8 @@ public class Tuple implements Serializable{
 	 * Costruisce l'oggetto riferito da tuple
 	 * @param size numero di item che costituira' la tupla
 	 */
-	public Tuple(int size){
+	//public
+	Tuple(int size){
 		this.tuple=new Item[size];
 	}
 	/**

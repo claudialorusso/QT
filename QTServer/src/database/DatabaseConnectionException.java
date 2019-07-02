@@ -2,7 +2,7 @@ package database;
 /**
  * Modella il fallimento di una connessione
  * al database.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class DatabaseConnectionException extends Exception {
 	/**

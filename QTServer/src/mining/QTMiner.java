@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  * Classe che gestisce ed implementa l'algoritmo
  * Quality Threshold.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class QTMiner implements Serializable{
 	/**

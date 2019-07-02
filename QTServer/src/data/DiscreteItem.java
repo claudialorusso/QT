@@ -4,7 +4,7 @@ package data;
  * che rappresenta la coppia
  * <Attributo discreto-valore discreto>
  * per esempio Outlook="Sunny"
- * @author Dileo Angela, Lorusso Claudia
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class DiscreteItem extends Item{
 	/**
@@ -29,7 +29,8 @@ public class DiscreteItem extends Item{
 	 * Item discreto.
 	 */
 	@Override
-	public double distance(Object a) {
+	//public
+	double distance(Object a) {
 		return (getValue().equals(((Item) a).getValue()))?0:1;
 	}
 }

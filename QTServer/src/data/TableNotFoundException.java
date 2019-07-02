@@ -1,7 +1,7 @@
 package data;
 /**
  * Modella la restituzione di una tabella inesistente.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class TableNotFoundException extends Exception{
 	private static final long serialVersionUID = 1L;
@@ -11,7 +11,8 @@ public class TableNotFoundException extends Exception{
 	 * la tabella richiesta non esiste.
 	 * @param tableName Tabella richiesta
 	 */
-	public TableNotFoundException(String tableName){
+	//public
+	TableNotFoundException(String tableName){
 		super("ERROR:'"+ tableName+"' table DOES NOT exist!");
 	}
 }

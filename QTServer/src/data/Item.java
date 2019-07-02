@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Modella un generico Item
  * (coppia attributo-valore,
  * ad esempio Outlook="Sunny")
- * @author Dileo Angela, Lorusso Claudia
+ * @author Claudia Lorusso, Angela Dileo
  */
 public abstract class Item implements Serializable {
 	/**
@@ -26,7 +26,8 @@ public abstract class Item implements Serializable {
 	 * @param attribute Attributo coinvolto nell'Item
 	 * @param value Valore assegnato all'attributo
 	 */
-	public Item(Attribute attribute, Object value){
+	//public
+	Item(Attribute attribute, Object value){
 		this.attribute = attribute;
 		this.value = value;
 	}
@@ -34,14 +35,16 @@ public abstract class Item implements Serializable {
 	 * Restituisce l'attributo contenuto nell'Item
 	 * @return l'attributo conteuto nell'Item
 	 */
-	public Attribute getAttribute(){
+	//public
+	Attribute getAttribute(){
 		return this.attribute;
 	}
 	/**
 	 * Restituisce il valore associato all'attributo
 	 * @return il valore associato all'attributo
 	 */
-	public Object getValue(){
+	//public
+	Object getValue(){
 		return this.value;
 	}
 	/**

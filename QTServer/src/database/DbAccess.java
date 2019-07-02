@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
  * Realizza l'accesso alla base di dati.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class DbAccess {
 	/**

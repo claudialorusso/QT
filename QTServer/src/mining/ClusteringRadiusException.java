@@ -2,7 +2,7 @@ package mining;
 /**
  * Modella un'eccezione controllata da considerare
  * qualora l'algoritmo di clustering generi un solo Cluster.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  *
  */
 public class ClusteringRadiusException extends Exception{

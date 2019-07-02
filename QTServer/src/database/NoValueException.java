@@ -1,7 +1,7 @@
 package database;
 /**
  * Modella l’assenza di un valore all’interno di un ResultSet
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class NoValueException extends Exception {
 	private static final long serialVersionUID = 1L;

@@ -20,8 +20,7 @@ import database.NoValueException;
  * @author Claudia Lorusso, Angela Dileo
  *
  */
-//public
-class ServerOneClient extends Thread {
+public class ServerOneClient extends Thread {
 	/**
 	 * Socket che permette la connessione
 	 */
@@ -37,7 +36,7 @@ class ServerOneClient extends Thread {
 	 */
 	private ObjectOutputStream out;
 	/**
-	 * 
+	 * Oggetto della classe QTMiner tramite cui calcolare il clusterSet
 	 */
 	private QTMiner qt;
 	/**

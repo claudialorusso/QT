@@ -1,7 +1,7 @@
 package database;
 /**
  * Modella la restituzione di un ResultSet vuoto
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class EmptySetException extends Exception {
 	/**

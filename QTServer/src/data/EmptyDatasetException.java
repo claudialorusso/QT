@@ -2,7 +2,7 @@ package data;
 /**
  * Modella un'eccezione controllata da considerare qualora
  * il dataset sia vuoto.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class EmptyDatasetException extends Exception{
 	/**
@@ -14,7 +14,8 @@ public class EmptyDatasetException extends Exception{
 	 * Stampa a video un messaggio di errore nel caso 
 	 * in cui il dataset e' vuoto.
 	 */
-	public EmptyDatasetException(){
+	//public
+	EmptyDatasetException(){
 		super("ERROR:The Data set is empty!");
 	}
 }

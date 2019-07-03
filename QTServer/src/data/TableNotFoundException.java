@@ -12,6 +12,6 @@ public class TableNotFoundException extends Exception{
 	 * @param tableName Tabella richiesta
 	 */
 	TableNotFoundException(String tableName){
-		super("ERROR:'"+ tableName+".dmp' table DOES NOT exist!");
+		super("ERROR:'"+ tableName+"' table DOES NOT exist!");
 	}
 }

@@ -63,7 +63,7 @@ public class MainTest {
 			System.out.print("(1/2):");
 			answer=Keyboard.readInt();
 		}
-		while(answer<=0 || answer>2);
+		while(answer<=0 || answer>2||answer==Integer.MIN_VALUE);
 		return answer;
 	}
 	/**
@@ -82,7 +82,7 @@ public class MainTest {
 				System.out.print("ERROR: only 'y' or 'n' admitted.\nType again your choice: ");
 			}
 		}
-		while(Character.toLowerCase(newExecution)!='y' && Character.toLowerCase(newExecution)!='n' );
+		while(Character.toLowerCase(newExecution)!='y' && Character.toLowerCase(newExecution)!='n'||newExecution==Character.MIN_VALUE);
 		return newExecution;
 	}
 	/**

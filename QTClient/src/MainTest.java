@@ -78,7 +78,7 @@ public class MainTest {
 		char newExecution;
 		do {
 			newExecution = Keyboard.readChar();
-			if(Character.toLowerCase(newExecution)!='y' && Character.toLowerCase(newExecution)!='n'||newExecution==Character.MIN_VALUE) {
+			if(Character.toLowerCase(newExecution)!='y' && Character.toLowerCase(newExecution)!='n') {
 				System.out.print("ERROR: only 'y' or 'n' admitted.\nType again your choice: ");
 			}
 		}

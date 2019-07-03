@@ -90,12 +90,11 @@ class ServerOneClient extends Thread {
 					qt = new QTMiner(radius);
 					try{
 						int numC=qt.compute(data);
-						//OUT ok
 						out.writeObject("OK");
 						out.writeObject(numC);
 						out.writeObject(qt.getC().toString(data));
 					}catch(ClusteringRadiusException e){ 
-						System.out.println(e.getMessage());
+						out.writeObject(e.getMessage());
 					}
 					break;
 				case 2://store Cluster In File
@@ -105,9 +104,9 @@ class ServerOneClient extends Thread {
 						qt.salva(file);
 						out.writeObject("OK");
 					} catch (FileNotFoundException e) {
-						System.out.println("ERROR: File Not Found!");
+						out.writeObject("ERROR: File Not Found!");
 					}catch (IOException e) {
-						System.out.println("ERROR: I/O not corrected!");
+						out.writeObject("ERROR: I/O not corrected!");
 					}catch(Exception e) {
 						out.writeObject(e.getMessage());
 					}

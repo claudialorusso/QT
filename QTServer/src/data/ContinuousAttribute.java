@@ -4,7 +4,8 @@ package data;
  * e modella un attributo continuo
  * @author Lorusso Claudia, Dileo Angela
  */
-public class ContinuousAttribute extends Attribute {
+//public
+class ContinuousAttribute extends Attribute {
 	private static final long serialVersionUID=1L;
 	/**
 	 * Estremo massimo di valori

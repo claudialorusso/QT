@@ -7,7 +7,8 @@
  * @author Claudia Lorusso, Angela Dileo
  *
  */
-public class ServerException extends Exception {
+//public
+class ServerException extends Exception {
 	/**
 	 * ID di serializzazione.
 	 */

@@ -9,7 +9,8 @@ import java.util.TreeSet;
  * e rappresenta un attributo discreto (categorico)
  * @author Claudia Lorusso, Angela Dileo
  */
-public class DiscreteAttribute extends Attribute implements Iterable<String> {
+//public
+class DiscreteAttribute extends Attribute implements Iterable<String> {
 	private static final long serialVersionUID=1L;
 	/**
 	 * Set di oggetti di tipo String,

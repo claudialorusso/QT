@@ -9,7 +9,8 @@ import java.util.*;
  * Modella un cluster
  * @author Claudia Lorusso, Angela Dileo
  */
-public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
+//public
+class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 	/**
 	 * ID di serializzazione
 	 */

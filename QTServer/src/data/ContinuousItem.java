@@ -3,7 +3,8 @@ package data;
  * Estende la classe Item e modella una coppia <attributo continuo - valore numerico>
  * @author Lorusso Claudia, Dileo Angela
  */
-public class ContinuousItem extends Item{
+//public
+class ContinuousItem extends Item{
 	/**
 	 * ID di serializzazione
 	 */

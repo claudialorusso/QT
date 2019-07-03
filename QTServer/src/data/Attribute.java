@@ -5,7 +5,8 @@ import java.io.Serializable;
  * Modella l'entita' attributo
  * @author Claudia Lorusso, Angela Dileo
  */
-public abstract class Attribute implements Serializable {
+//public
+abstract class Attribute implements Serializable {
 	private static final long serialVersionUID=1L;
 	/**
 	 * Nome simbolico dell'attributo

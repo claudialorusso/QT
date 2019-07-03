@@ -8,7 +8,8 @@ import java.io.Serializable;
  * ad esempio Outlook="Sunny")
  * @author Claudia Lorusso, Angela Dileo
  */
-public abstract class Item implements Serializable {
+//public
+abstract class Item implements Serializable {
 	/**
 	 * ID di serializzazione
 	 */

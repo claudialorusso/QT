@@ -6,7 +6,8 @@ package data;
  * per esempio Outlook="Sunny"
  * @author Claudia Lorusso, Angela Dileo
  */
-public class DiscreteItem extends Item{
+//public
+class DiscreteItem extends Item{
 	/**
 	 * ID di serializzazione
 	 */

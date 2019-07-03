@@ -20,7 +20,6 @@ import database.NoValueException;
  * @author Claudia Lorusso, Angela Dileo
  *
  */
-//public
 class ServerOneClient extends Thread {
 	/**
 	 * Socket che permette la connessione
@@ -47,7 +46,6 @@ class ServerOneClient extends Thread {
 	 * @param s Socket
 	 * @throws IOException Eccezione di tipo I/O.
 	 */
-	//public
 	ServerOneClient(Socket s) throws IOException {
 		this.socket = s;
 		in = new ObjectInputStream(s.getInputStream());
@@ -102,7 +100,7 @@ class ServerOneClient extends Thread {
 					break;
 				case 2://store Cluster In File
 					try {
-						System.out.println("is storing the ClusterSet into a file");
+						System.out.println("storing the ClusterSet into a file");
 						String file = (String) in.readObject();
 						qt.salva(file);
 						out.writeObject("OK");
@@ -122,7 +120,7 @@ class ServerOneClient extends Thread {
 							out.writeObject("OK");
 							qt = new QTMiner(fileName);
 							out.writeObject(qt.toString());
-						} else out.writeObject("Caricamento non andato a buon fine!");
+						} else out.writeObject("Loading aborted!");
 					}catch (FileNotFoundException e) {
 						out.writeObject(e.getMessage());
 					}catch(	IOException|
@@ -135,7 +133,6 @@ class ServerOneClient extends Thread {
 				try {
 					out.writeObject(e.getMessage());
 				} catch (IOException e1) {
-					//e1.printStackTrace();
 					System.out.println(e1.getMessage());
 				}
 				System.out.println(e.getMessage());
@@ -150,7 +147,6 @@ class ServerOneClient extends Thread {
 					try {
 						socket.close();
 					} catch (IOException e1) {
-						//e1.printStackTrace();
 						System.out.println(e1.getMessage());
 					}
 				}

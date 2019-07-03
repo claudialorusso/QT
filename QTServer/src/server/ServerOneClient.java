@@ -135,7 +135,8 @@ class ServerOneClient extends Thread {
 				try {
 					out.writeObject(e.getMessage());
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					//e1.printStackTrace();
+					System.out.println(e1.getMessage());
 				}
 				System.out.println(e.getMessage());
 			}catch (IOException e) {
@@ -149,7 +150,8 @@ class ServerOneClient extends Thread {
 					try {
 						socket.close();
 					} catch (IOException e1) {
-						e1.printStackTrace();
+						//e1.printStackTrace();
+						System.out.println(e1.getMessage());
 					}
 				}
 			}

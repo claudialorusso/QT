@@ -83,9 +83,7 @@ public class Data implements Serializable {
 								 * DiscreteAttribute
 								 */
 								Set<String> values = new TreeSet<String>();
-								/*
-								 * Valori effettivamente contenuti in Data
-								 */
+								 //Valori effettivamente contenuti in Data
 								Set<Object> efValues = table.getDistinctColumnValues(tableName, tschema.getColumn(i));
 								for(Object ob: efValues) {
 									values.add((String)ob);
@@ -95,7 +93,7 @@ public class Data implements Serializable {
 							attributeSet.add(attribute);
 						}
 					}else throw new EmptyDatasetException();
-					//////////////////////////////////////////////db.closeConnection();
+					db.closeConnection();
 				}else throw new TableNotFoundException(tableName);
 			}catch(SQLException ex2) {
 				System.out.println(ex2.getMessage());

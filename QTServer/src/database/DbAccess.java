@@ -69,8 +69,7 @@ public class DbAccess {
 	/**
 	 * Chiude la connessione al Database
 	 */
-	//public
-	void closeConnection(){
+	public void closeConnection(){
 		try{
 			conn.close();
 		} catch (SQLException e){

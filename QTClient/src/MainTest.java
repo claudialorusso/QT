@@ -102,8 +102,14 @@ public class MainTest {
 		//CASE 0
 		out.writeObject(0);
 		String tabName = "playtennis";
-		System.out.print("Table name:");
-		tabName=Keyboard.readWord();
+		tabName= "";
+		do {
+			System.out.print("Table name:");
+			tabName=Keyboard.readWord();
+			if (tabName==null) {
+				System.out.println("Spaces between words are NOT permetted.Try again.");
+			}
+		}while(tabName==null);
 		out.writeObject(tabName);
 		String result = (String)in.readObject();
 		if(!result.equals("OK"))
@@ -161,14 +167,19 @@ public class MainTest {
 		//CASE 2
 		out.writeObject(2);
 		String fileName = "";
-		System.out.print("File name:");
-		fileName=Keyboard.readWord()+".dmp";
+		do {
+			System.out.print("File name:");
+			fileName=Keyboard.readWord();
+			if (fileName==null) {
+				System.out.println("Spaces between words are NOT permetted.Try again:");
+			}
+		}while(fileName==null);
+		fileName=fileName.concat(".dmp");
 		out.writeObject(fileName);
 		String result = (String)in.readObject();
 		if(result.equals("OK"))
 			System.out.println("Saving clusters in "+fileName);
 		else throw new ServerException(result);
-
 	}
 	/**
 	 * Controlla l'acquisizione della stringa,
@@ -192,14 +203,19 @@ public class MainTest {
 		//CASE 3
 		out.writeObject(3);
 		String fileName = "";
-		System.out.print("File Name:");
-		fileName=Keyboard.readWord()+".dmp";
+		do {
+			System.out.print("File name:");
+			fileName=Keyboard.readWord();
+			if (fileName==null) {
+				System.out.println("Spaces between words are NOT permetted.Try again:");
+			}
+		}while(fileName==null);
+		fileName=fileName.concat(".dmp");
 		out.writeObject(fileName);
 		String result = (String)in.readObject();
 		if(result.equals("OK"))
 			return (String)in.readObject();
 		else throw new ServerException(result);
-
 	}
 	/**
 	 * Main della Classe.

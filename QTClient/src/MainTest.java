@@ -103,7 +103,7 @@ public class MainTest {
 		out.writeObject(0);
 		String tabName = "playtennis";
 		System.out.print("Table name:");
-		tabName=Keyboard.readString();
+		tabName=Keyboard.readWord();
 		out.writeObject(tabName);
 		String result = (String)in.readObject();
 		if(!result.equals("OK"))

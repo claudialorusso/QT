@@ -9,7 +9,6 @@ import java.net.Socket;
  * @author Claudia Lorusso, Angela Dileo
  *
  */
-//public
 class MultiServer{
 	/**
 	 * Porta a cui si deve connetere il server
@@ -26,7 +25,7 @@ class MultiServer{
 			try{
 				try {
 					port=new Integer(args[0]).intValue();
-					if(port>=1 && port<=1024) {
+					if((port>=1 && port<=1024) || port>65535) {
 						System.out.println("The selected port number '"+port+"' is NOT available.");
 						port=PORT;
 						System.out.println("Value setted to '"+port+"' by DEFAULT");

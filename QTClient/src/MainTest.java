@@ -2,10 +2,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import keyboardinput.Keyboard;
+
 
 /**
  * Classe che comprende il Main del software,
@@ -37,7 +39,7 @@ public class MainTest {
 	 * @param port numero di porta
 	 * @throws IOException nella lettura dell'intestazione dello Stream
 	 */
-	public MainTest(String ip, int port) throws IOException{
+	public MainTest(String ip, int port) throws IOException,ConnectException{
 		InetAddress addr = InetAddress.getByName(ip);
 		System.out.println("addr = " + addr);
 		Socket socket = new Socket(addr, port);
@@ -56,7 +58,6 @@ public class MainTest {
 	 */
 	private int menu(){
 		int answer;
-
 		do{
 			System.out.println("(1) Load clusters from file");
 			System.out.println("(2) Load data from db");
@@ -223,11 +224,26 @@ public class MainTest {
 	 * il numero di porta, nel secondo argomento.
 	 */
 	public static void main(String[] args) {
-		String ip=args[0];
-		int port=new Integer(args[1]).intValue();
+		String ip;
+		int port;
+		if(args.length==2) {
+			ip=args[0];
+			port=new Integer(args[1]).intValue();
+		}else if(args.length==0) {
+			ip="localhost";
+			port = 8080;
+			System.out.println("IP value setted by DEFAULT to: "+ip);
+			System.out.println("PORT value setted by DEFAULT to: "+port+"\n");
+		}else {
+			System.out.println("ERROR:Only two arguments (IP and PORT values) permetted!");
+			return;
+		}
 		MainTest main=null;
 		try{
 			main=new MainTest(ip,port);
+		}catch(ConnectException e) {
+			System.out.println("The Server @"+ip+":"+port+" is sleeping. (Zzz)");
+			return;
 		}
 		catch (IOException e){
 			System.out.println(e);
@@ -243,7 +259,7 @@ public class MainTest {
 					System.out.println(qt);
 				}
 				catch (SocketException e) {
-					System.out.println(e);
+					System.out.println("The Server shutted down. May he rest in peace "+Keyboard.CROSS_ASCII);
 					return;
 				}
 				catch (FileNotFoundException e) {
@@ -269,7 +285,7 @@ public class MainTest {
 					}
 
 					catch (SocketException e) {
-						System.out.println(e);
+						System.out.println("The Server shutted down. May he rest in peace "+Keyboard.CROSS_ASCII);
 						return;
 					}
 					catch (FileNotFoundException e) {
@@ -297,7 +313,7 @@ public class MainTest {
 						main.storeClusterInFile();
 					}
 					catch (SocketException e) {
-						System.out.println(e);
+						System.out.println("The Server shutted down. May he rest in peace "+Keyboard.CROSS_ASCII);
 						return;
 					}
 					catch (FileNotFoundException e) {

@@ -22,7 +22,7 @@ import database.Table_Schema;
 /**
  * Modella l'insieme di tuple
  * anche dette transizioni o esempi(Examples)
- * @author Dileo Angela, Lorusso Claudia
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class Data implements Serializable {
 	/**
@@ -203,7 +203,7 @@ public class Data implements Serializable {
 	 * se il nome della tabella da cercare nel database
 	 * corrisponda o meno ad una tabella effettivamente presente
 	 * nel database.
-	 * @author Claudia Lorusso, Dileo Angela
+	 * @author Claudia Lorusso, Angela Dileo
 	 */
 	static class TableVerify{
 		static boolean tableExists(Connection conn, String tableName) throws SQLException,SQLSyntaxErrorException {

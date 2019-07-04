@@ -9,7 +9,6 @@ import java.util.TreeSet;
  * e rappresenta un attributo discreto (categorico)
  * @author Claudia Lorusso, Angela Dileo
  */
-//public
 class DiscreteAttribute extends Attribute implements Iterable<String> {
 	private static final long serialVersionUID=1L;
 	/**
@@ -26,7 +25,6 @@ class DiscreteAttribute extends Attribute implements Iterable<String> {
 	 * @param values TreeSet di oggetti di tipo String,
 	 * uno per ciascun valore del dominio discreto
 	 */
-	//public
 	DiscreteAttribute(String name, int index, Set<String> values){
 		super(name,index);
 		this.values=values;
@@ -54,7 +52,6 @@ class DiscreteAttribute extends Attribute implements Iterable<String> {
 	 * già implementati di default).
 	 * @author Claudia Lorusso, Dileo Angela
 	 */
-	//friendly
 	private class StringIterator implements Iterator<String>{
 		/**
 		 * conta gli elementi nel TreeSet

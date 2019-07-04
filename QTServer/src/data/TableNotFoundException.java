@@ -4,6 +4,9 @@ package data;
  * @author Claudia Lorusso, Angela Dileo
  */
 public class TableNotFoundException extends Exception{
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * Costruttore della classe TableNotFoundException.

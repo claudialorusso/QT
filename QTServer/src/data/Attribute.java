@@ -5,7 +5,6 @@ import java.io.Serializable;
  * Modella l'entita' attributo
  * @author Claudia Lorusso, Angela Dileo
  */
-//public
 abstract class Attribute implements Serializable {
 	private static final long serialVersionUID=1L;
 	/**
@@ -29,7 +28,6 @@ abstract class Attribute implements Serializable {
 	 * Restituisce il nome dell'attributo
 	 * @return nome dell'attributo
 	 */
-	//public
 	String getName(){
 		return name;
 	}
@@ -37,7 +35,6 @@ abstract class Attribute implements Serializable {
 	 * Restituisce l'identificativo numerico dell'attributo
 	 * @return identificativo numerico dell'Attribute
 	 */
-	//public
 	private int getIndex(){
 		return index;
 	}

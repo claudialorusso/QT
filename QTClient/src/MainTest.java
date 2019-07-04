@@ -8,7 +8,6 @@ import java.net.Socket;
 import java.net.SocketException;
 import keyboardinput.Keyboard;
 
-
 /**
  * Classe che comprende il Main del software,
  * corrispondente all'interfaccia del Client con
@@ -17,7 +16,6 @@ import keyboardinput.Keyboard;
  *
  */
 public class MainTest {
-
 	/**
 	 * Stream di Output
 	 */

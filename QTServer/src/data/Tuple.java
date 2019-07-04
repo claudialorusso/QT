@@ -19,7 +19,6 @@ public class Tuple implements Serializable{
 	 * Costruisce l'oggetto riferito da tuple
 	 * @param size numero di item che costituira' la tupla
 	 */
-	//public
 	Tuple(int size){
 		this.tuple=new Item[size];
 	}

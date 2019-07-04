@@ -7,7 +7,6 @@
  * @author Claudia Lorusso, Angela Dileo
  *
  */
-//public
 class ServerException extends Exception {
 	/**
 	 * ID di serializzazione.
@@ -16,7 +15,6 @@ class ServerException extends Exception {
 	/**
 	 * Costruttore di default, con messaggio personalizzato.
 	 */
-	//public
 	ServerException () {
 		super("Server connection error!");
 	}
@@ -26,8 +24,7 @@ class ServerException extends Exception {
 	 * @param result stringa contenente
 	 * la richiesta, errata, da parte del Client.
 	 */
-	//public
 	ServerException(String result) {
-		super("ERROR: Invalid client request;\nREASON:'"+result+"'");////////////////////////////////////////
+		super("ERROR: Invalid client request;\nREASON:'"+result+"'");
 	}
 }

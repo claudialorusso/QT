@@ -101,9 +101,6 @@ public class QTMiner implements Serializable{
 			}
 		return cSet.last();//l'ultimo Cluster corrisponde al piu' popoloso
 	}
-	
-	//////////////////////METODI PER LA SERIALIZZAZIONE E DESERIALIZZAZIONE////////////////////////////////
-	
 	/**
 	 * Costruttore per la serializzazione della classe QTMiner.
 	 * Apre il file identificato da fileName,

@@ -14,7 +14,6 @@ public class DatabaseConnectionException extends Exception {
 	 * Stampa a video un messaggio di errore quando la
 	 * connessione al database fallisce.
 	 */
-	//public
 	DatabaseConnectionException(){
 		super("ERROR: Database connection failed!");
 	}

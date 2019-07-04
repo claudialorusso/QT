@@ -4,6 +4,9 @@ package database;
  * @author Claudia Lorusso, Angela Dileo
  */
 public class NoValueException extends Exception {
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * Costruttore della classe NoValueException.</p>
@@ -12,7 +15,6 @@ public class NoValueException extends Exception {
 	 * @param msg messaggio di errore
 	 * dovuto all'assenza di un valore all'interno di un Resultet
 	 */
-	//public
 	NoValueException(String msg) {
 		super(msg);
 	}
@@ -20,7 +22,6 @@ public class NoValueException extends Exception {
 	 * Costruttore di default della classe con messaggio
 	 * di default.
 	 */
-	//public
 	NoValueException() {
 		super("ERROR: Absent value!");
 	}

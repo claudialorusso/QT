@@ -9,7 +9,6 @@ import java.util.*;
  * Modella un cluster
  * @author Claudia Lorusso, Angela Dileo
  */
-//public
 class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 	/**
 	 * ID di serializzazione
@@ -124,7 +123,6 @@ class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 		else
 			return 1;
 	}
-	/////////////////////////////////////////////////CANCELLARE?
 	/**
 	 * Verifica se una tupla e' clusterizzata
 	 * nell'array corrente:
@@ -145,5 +143,4 @@ class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 	private void removeTuple(int id){
 		clusteredData.remove(id);
 	}
-	/////////////////////////////////////////////////////////////////
 }

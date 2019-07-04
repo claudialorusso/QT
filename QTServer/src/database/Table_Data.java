@@ -102,8 +102,7 @@ public class Table_Data {
 	public Set<Object> getDistinctColumnValues(String table,Column column) throws SQLException{
 		Set<Object> valueSet = new TreeSet<Object>();
 		Statement statement;
-		//Table_Schema tSchema=new Table_Schema(db,table);////////////////////////////////////////
-
+	
 		String query="select distinct ";
 
 		query+= column.getColumnName();
@@ -143,7 +142,6 @@ public class Table_Data {
 	 */
 	public Object getAggregateColumnValue(String table,Column column,QUERY_TYPE aggregate) throws SQLException,NoValueException{
 		Statement statement;
-		//Table_Schema tSchema=new Table_Schema(db,table);/////////////////////////////
 		Object value=null;
 		String aggregateOp="";
 

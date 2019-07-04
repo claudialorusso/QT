@@ -8,7 +8,7 @@ import java.util.*;
  * Rappresenta un Set di Cluster
  * determinati per mezzo dell'algoritmo
  * Quality Threshold.
- * @author Lorusso Claudia, Dileo Angela
+ * @author Claudia Lorusso, Angela Dileo
  */
 public class ClusterSet implements Iterable<Cluster>, Serializable{
 	/**
@@ -66,12 +66,6 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 	void add(Cluster c) {
 		C.add(c);
 	}
-	/**
-	 * @return numero di Cluster presenti nel ClusterSet
-	 */
-	/*int getSize() {
-		return C.size();
-	}*/
 	/**
 	 * Override del metodo toString
 	 * di Object.

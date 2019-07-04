@@ -6,7 +6,6 @@ package data;
  * per esempio Outlook="Sunny"
  * @author Claudia Lorusso, Angela Dileo
  */
-//public
 class DiscreteItem extends Item{
 	/**
 	 * ID di serializzazione
@@ -30,7 +29,6 @@ class DiscreteItem extends Item{
 	 * Item discreto.
 	 */
 	@Override
-	//public
 	double distance(Object a) {
 		return (getValue().equals(((Item) a).getValue()))?0:1;
 	}

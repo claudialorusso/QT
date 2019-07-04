@@ -8,7 +8,6 @@ import java.io.Serializable;
  * ad esempio Outlook="Sunny")
  * @author Claudia Lorusso, Angela Dileo
  */
-//public
 abstract class Item implements Serializable {
 	/**
 	 * ID di serializzazione
@@ -27,7 +26,6 @@ abstract class Item implements Serializable {
 	 * @param attribute Attributo coinvolto nell'Item
 	 * @param value Valore assegnato all'attributo
 	 */
-	//public
 	Item(Attribute attribute, Object value){
 		this.attribute = attribute;
 		this.value = value;
@@ -36,7 +34,6 @@ abstract class Item implements Serializable {
 	 * Restituisce l'attributo contenuto nell'Item
 	 * @return l'attributo conteuto nell'Item
 	 */
-	//public
 	Attribute getAttribute(){
 		return this.attribute;
 	}
@@ -44,7 +41,6 @@ abstract class Item implements Serializable {
 	 * Restituisce il valore associato all'attributo
 	 * @return il valore associato all'attributo
 	 */
-	//public
 	Object getValue(){
 		return this.value;
 	}

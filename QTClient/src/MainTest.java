@@ -102,16 +102,15 @@ public class MainTest {
 	private void storeTableFromDb() throws SocketException,ServerException,IOException,ClassNotFoundException{
 		//CASE 0
 		out.writeObject(0);
-		String tabName = "playtennis";
-		tabName= "";
+		String tabName;
 		do {
 			System.out.print("Table name:");
 			tabName=Keyboard.readWord();
 			if (tabName==null) {
-				System.out.println("Spaces between words are NOT permetted.Try again.");
+				System.out.println("Spaces between words are NOT allowed.Try again.");
 			}
 		}while(tabName==null);
-		out.writeObject(tabName);
+		out.writeObject(tabName.toLowerCase());
 		String result = (String)in.readObject();
 		if(!result.equals("OK"))
 			throw new ServerException(result);
@@ -172,7 +171,7 @@ public class MainTest {
 			System.out.print("File name:");
 			fileName=Keyboard.readWord();
 			if (fileName==null) {
-				System.out.println("Spaces between words are NOT permetted.Try again:");
+				System.out.println("Spaces between words are NOT allowed.Try again:");
 			}
 		}while(fileName==null);
 		fileName=fileName.concat(".dmp");
@@ -208,7 +207,7 @@ public class MainTest {
 			System.out.print("File name:");
 			fileName=Keyboard.readWord();
 			if (fileName==null) {
-				System.out.println("Spaces between words are NOT permetted.Try again:");
+				System.out.println("Spaces between words are NOT allowed.Try again:");
 			}
 		}while(fileName==null);
 		fileName=fileName.concat(".dmp");
@@ -235,7 +234,7 @@ public class MainTest {
 			System.out.println("IP value setted by DEFAULT to: "+ip);
 			System.out.println("PORT value setted by DEFAULT to: "+port+"\n");
 		}else {
-			System.out.println("ERROR:Only two arguments (IP and PORT values) permetted!");
+			System.out.println("ERROR:Only two arguments (IP and PORT values) allowed!");
 			return;
 		}
 		MainTest main=null;

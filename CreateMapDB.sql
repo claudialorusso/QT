@@ -66,7 +66,7 @@ insert into MapDB.example1 values
 	(28,9,3),
 	(29,9,4),
 	(30,9,5);
-CREATE TABLE MapDB. emptyT(
+CREATE TABLE MapDB. emptyt(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(30)
 );

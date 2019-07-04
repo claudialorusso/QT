@@ -1,1 +1,7 @@
 http://data-mining.philippe-fournier-viger.com/introduction-clustering-k-means-java-code/
+https://www.xdat.org/index.php?ref=developers
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.3421&rep=rep1&type=pdf
+https://elki-project.github.io/examples/3dpc
+https://pdfs.semanticscholar.org/3898/550387685297548f8523f03cbed24b4b67fe.pdf
+https://softwareengineering.stackexchange.com/questions/243199/find-points-whose-pairwise-distances-approximate-a-given-distance-matrix/243212#243212
+https://www.xdat.org/index.php?ref=manual

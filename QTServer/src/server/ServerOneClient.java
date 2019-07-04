@@ -7,11 +7,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.SQLException;
 import data.Data;
-import data.EmptyDatasetException;
 import data.TableNotFoundException;
 import mining.ClusteringRadiusException;
 import mining.QTMiner;
 import database.DatabaseConnectionException;
+import database.EmptySetException;
 import database.NoValueException;
 
 /**
@@ -76,9 +76,9 @@ class ServerOneClient extends Thread {
 					}catch(DatabaseConnectionException|
 							SQLException|
 							NoValueException|
-							EmptyDatasetException|
 							TableNotFoundException|
-							IOException e) {
+							IOException|
+							EmptySetException e) {
 						out.writeObject(e.getMessage());
 					}
 					break;

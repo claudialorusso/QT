@@ -58,48 +58,40 @@ public class Data implements Serializable {
 	 * database
 	 * @throws NoValueException se il resultset e' vuoto o il valore calcolato e' pari a null
 	 */
-	public Data(String tableName) throws DatabaseConnectionException, SQLException, EmptyDatasetException,TableNotFoundException, NoValueException{
+	public Data(String tableName) throws DatabaseConnectionException, SQLException,TableNotFoundException, NoValueException,EmptySetException{
 		try{
 			DbAccess db = new DbAccess();
 			db.initConnection();
 			Table_Data table = new Table_Data(db);
 			boolean exists = false;
-			try {
-				exists=TableVerify.tableExists(db.getConnection(),tableName);
-				if (exists) {
-					data=table.getDistinctTransazioni(tableName);
-					numberOfExamples=data.size();
-					if(numberOfExamples>0) {
-						Table_Schema tschema = new Table_Schema(db,tableName);
-						Attribute attribute;
-						for(int i=0;i<tschema.getNumberOfAttributes();i++) {
-							if(tschema.getColumn(i).isNumber()) {
-								double maxTemp = (float) table.getAggregateColumnValue(tableName, tschema.getColumn(i), QUERY_TYPE.MAX);
-								double minTemp = (float) table.getAggregateColumnValue(tableName, tschema.getColumn(i), QUERY_TYPE.MIN);
-								attribute = new ContinuousAttribute(tschema.getColumn(i).getColumnName(),i,minTemp,maxTemp);
-							}else {
-								/*Set temporaneo in cui memorizzo i values
-								 * privi di duplicati da passare al costruttore
-								 * DiscreteAttribute
-								 */
-								Set<String> values = new TreeSet<String>();
-								 //Valori effettivamente contenuti in Data
-								Set<Object> efValues = table.getDistinctColumnValues(tableName, tschema.getColumn(i));
-								for(Object ob: efValues) {
-									values.add((String)ob);
-								}
-								attribute =new DiscreteAttribute(tschema.getColumn(i).getColumnName(),i,(TreeSet<String>)values);
-							}
-							attributeSet.add(attribute);
+			exists=TableVerify.tableExists(db.getConnection(),tableName);
+			if (exists) {
+				data=table.getDistinctTransazioni(tableName);
+				numberOfExamples=data.size();
+				Table_Schema tschema = new Table_Schema(db,tableName);
+				Attribute attribute;
+				for(int i=0;i<tschema.getNumberOfAttributes();i++) {
+					if(tschema.getColumn(i).isNumber()) {
+						double maxTemp = (float) table.getAggregateColumnValue(tableName, tschema.getColumn(i), QUERY_TYPE.MAX);
+						double minTemp = (float) table.getAggregateColumnValue(tableName, tschema.getColumn(i), QUERY_TYPE.MIN);
+						attribute = new ContinuousAttribute(tschema.getColumn(i).getColumnName(),i,minTemp,maxTemp);
+					}else {
+						/*Set temporaneo in cui memorizzo i values
+						 * privi di duplicati da passare al costruttore
+						 * DiscreteAttribute
+						 */
+						Set<String> values = new TreeSet<String>();
+						//Valori effettivamente contenuti in Data
+						Set<Object> efValues = table.getDistinctColumnValues(tableName, tschema.getColumn(i));
+						for(Object ob: efValues) {
+							values.add((String)ob);
 						}
-					}else throw new EmptyDatasetException();
-					db.closeConnection();
-				}else throw new TableNotFoundException(tableName);
-			}catch(SQLException ex2) {
-				System.out.println(ex2.getMessage());
-			}catch(EmptySetException empty){
-				System.out.println(empty.getMessage());
-			}
+						attribute =new DiscreteAttribute(tschema.getColumn(i).getColumnName(),i,(TreeSet<String>)values);
+					}
+					attributeSet.add(attribute);
+				}
+				db.closeConnection();
+			}else throw new TableNotFoundException(tableName);
 		}catch(IndexOutOfBoundsException e) {
 			System.out.println(e.getMessage());
 		}

@@ -28,6 +28,6 @@ class ServerException extends Exception {
 	 */
 	//public
 	ServerException(String result) {
-		super("ERROR: Invalid client request;\nMOTIVATION:'"+result+"'");////////////////////////////////////////
+		super("ERROR: Invalid client request;\nREASON:'"+result+"'");////////////////////////////////////////
 	}
 }

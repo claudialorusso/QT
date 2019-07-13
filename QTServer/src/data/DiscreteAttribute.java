@@ -44,10 +44,13 @@ class DiscreteAttribute extends Attribute implements Iterable<String> {
 		return new StringIterator();
 	}
 	/**
-	 * Inner Class di DiscreteAttribute.</p>
-	 * Implementazione dell'iteratore di DiscreteAttribute.</p>
+	 * Inner Class di DiscreteAttribute.
+	 * <p>
+	 * Implementazione dell'iteratore di DiscreteAttribute.
+	 * <p>
 	 * (Abbiamo deciso di metterci alla prova
-	 * e di implementare i metodi dell'interfaccia Iterator<String>
+	 * e di implementare i metodi dell'interfaccia corrispondente
+	 * all'iteratore di stringhe
 	 * in modo che facessero esattamente lo stesso lavoro di quelli
 	 * già implementati di default).
 	 * @author Claudia Lorusso, Dileo Angela

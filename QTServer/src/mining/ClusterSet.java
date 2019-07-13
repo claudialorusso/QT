@@ -101,7 +101,8 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 		return str;
 	}
 	/**
-	 * Override del metodo iterator.</p>
+	 * Override del metodo iterator.
+	 * <p>
 	 * Itera sul ClusterSet
 	 */
 	@Override

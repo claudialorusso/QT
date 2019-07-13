@@ -1,3 +1,8 @@
+/**
+ * Package che gestisce l'acquisizione degli elementi presenti
+ * in Data e modella i vari Items (formati da un attributo ed un valore)
+ * presenti nelle tuple di Data.
+ */
 package data;
 import java.io.Serializable;
 

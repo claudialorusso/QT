@@ -52,6 +52,7 @@ public class QTMiner implements Serializable{
 	 * Esegue l'algoritmo QT.
 	 * @param data lista di esempi/tuple
 	 * @return numero di clusters scoperti
+	 * @throws ClusteringRadiusException qualora l'algoritmo di clustering generi un solo Cluster
 	 */
 	public int compute(Data data) throws ClusteringRadiusException {
 		int numclusters=0;
@@ -81,9 +82,11 @@ public class QTMiner implements Serializable{
 	 * @param data insieme di esempi/tuple che necessitano di
 	 * essere raggruppati in Clusters
 	 * @param isClustered informazione booleana
-	 * sullo stato di clusterizzazione di una tupla:</p>
+	 * sullo stato di clusterizzazione di una tupla:
+	 * <p>
 	 * -	false se la tupla considerata non e' ancora assegnata ad alcun
-	 * cluster di C;</p>
+	 * cluster di C;
+	 * <p>
 	 * -	true altrimenti.
 	 * @return il Cluster candidato piu' popoloso
 	 */

@@ -45,7 +45,8 @@ public class Data implements Serializable {
 	 */
 	private List<Attribute> attributeSet = new LinkedList<Attribute>();
 	/**
-	 * Costruttore della classe Data. </p>
+	 * Costruttore della classe Data. 
+	 * <p>
 	 * Preleva da una tabella presente nel database
 	 * i dati necessaria ll'inizializzazione di Data.
 	 * Preleva i valori da inserire in DescreteAttribute ed in
@@ -54,7 +55,7 @@ public class Data implements Serializable {
 	 * i dati nel Database
 	 * @throws DatabaseConnectionException nel caso di errori durante la connessione al DB
 	 * @throws SQLException in presenza di errori nella esecuzione della query
-	 * @throws EmptyDatasetException nel caso in cui il DataSet dovesse risultare vuoto
+	 * @throws EmptySetException nel caso in cui il DataSet dovesse risultare vuoto
 	 * @throws TableNotFoundException nel caso in cui non esistesse la tabella all'interno del
 	 * database
 	 * @throws NoValueException se il resultset e' vuoto o il valore calcolato e' pari a null

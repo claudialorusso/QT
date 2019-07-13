@@ -14,7 +14,8 @@ public class ClusteringRadiusException extends Exception{
 	 */
 	ClusteringRadiusException() {}
 	/**
-	 * Secondo costruttore della classe ClusteringRadiusException.</p>
+	 * Secondo costruttore della classe ClusteringRadiusException.
+	 * <p>
 	 * Stampa a video un messaggio quando il valore del raggio
 	 * sia talmente alto da fare in modo che tutte le tuple siano contenute in
 	 * un unico Cluster.

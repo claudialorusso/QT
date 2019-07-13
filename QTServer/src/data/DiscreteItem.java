@@ -3,7 +3,7 @@ package data;
 /**
  * Estende la classe Item
  * che rappresenta la coppia
- * <Attributo discreto-valore discreto>
+ * (Attributo discreto-valore discreto)
  * per esempio Outlook="Sunny"
  * @author Claudia Lorusso, Angela Dileo
  */

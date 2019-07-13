@@ -1,6 +1,6 @@
 package data;
 /**
- * Estende la classe Item e modella una coppia <attributo continuo - valore numerico>
+ * Estende la classe Item e modella una coppia (attributo continuo - valore numerico)
  * @author Claudia Lorusso, Angela Dileo
  */
 class ContinuousItem extends Item{

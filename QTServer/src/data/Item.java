@@ -45,7 +45,8 @@ abstract class Item implements Serializable {
 		return this.value;
 	}
 	/**
-	 * Override del metodo toString di Object.</p>
+	 * Override del metodo toString di Object.
+	 * <p>
 	 * Restituisce una stringa contenente il value.
 	 */
 	@Override

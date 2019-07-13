@@ -36,6 +36,7 @@ public class MainTest {
 	 * @param ip stringa contenente l'indirizzo ip
 	 * @param port numero di porta
 	 * @throws IOException nella lettura dell'intestazione dello Stream
+	 * @throws ConnectException nel caso in cui il server smetta di funzionare
 	 */
 	public MainTest(String ip, int port) throws IOException,ConnectException{
 		InetAddress addr = InetAddress.getByName(ip);

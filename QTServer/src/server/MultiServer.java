@@ -1,3 +1,6 @@
+/**
+ * Package che gestisce la connessione tra client e server.
+ */
 package server;
 
 import java.io.IOException;
@@ -58,6 +61,7 @@ class MultiServer{
 	 * Costruttore di classe.
 	 * Inizializza la porta ed invoca run().
 	 * @param port valore da assegnare alla porta.
+	 * @throws IOException in caso di errore nell'apertura della socket
 	 */
 	private MultiServer(int port) throws IOException{
 		PORT = port;
@@ -69,6 +73,7 @@ class MultiServer{
 	 * del client.
 	 * Ad ogni nuova richiesta di connessione
 	 * si istanzia ServerOneClient.
+	 * @throws IOException in caso di errore nell'apertura della socket
 	 */
 	private void run() throws IOException{
 		ServerSocket s = new ServerSocket(PORT);

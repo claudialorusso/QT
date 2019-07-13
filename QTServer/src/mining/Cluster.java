@@ -1,3 +1,10 @@
+/**
+ * Package che gestisce la creazione dei ClusterSets e dei
+ * rispettivi Cluster in esso contenuti.
+ * <p>
+ * Comprende l'algoritmo per la scelta del miglior Cluster, ovvero quello
+ * piu' popoloso.
+ */
 package mining;
 
 import data.Data;
@@ -83,10 +90,14 @@ class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 	}
 	/**
 	 * Memorizza in una stringa
-	 * tutte le informazioni sul Cluster:</p>
-	 * -	il suo centroide</p>
-	 * -	le tuple contenute nel cluster</p>
-	 * -	la distanza tra la tupla ed il centroide</p>
+	 * tutte le informazioni sul Cluster:
+	 * <p>
+	 * -	il suo centroide
+	 * <p>
+	 * -	le tuple contenute nel cluster
+	 * <p>
+	 * -	la distanza tra la tupla ed il centroide
+	 * <p>
 	 * -	la distanza media
 	 * @param data oggetto della classe Data
 	 * @return str stringa contenente le informazioni sul Cluster
@@ -122,25 +133,5 @@ class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 			return -1;
 		else
 			return 1;
-	}
-	/**
-	 * Verifica se una tupla e' clusterizzata
-	 * nell'array corrente:
-	 * <p>
-	 * se il valore id e' pari a true
-	 * vuol dire che la tupla e' stata clusterizzata
-	 * @param id
-	 * @return
-	 */
-	private boolean contain(int id){
-		return clusteredData.contains(id);
-	}
-	/**
-	 * Rimuove la tupla che ha cambiato
-	 * il cluster
-	 * @param id identificativo della tupla da rimuovere
-	 */
-	private void removeTuple(int id){
-		clusteredData.remove(id);
 	}
 }

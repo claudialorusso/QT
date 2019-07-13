@@ -21,7 +21,7 @@ public class Table_Data {
 	/**
 	 * Costruttore della classe Table_Data.
 	 * Fornisce l'accesso al database.
-	 * @param db
+	 * @param db permette l'accesso al DB
 	 */
 	public Table_Data(DbAccess db) {
 		this.db=db;

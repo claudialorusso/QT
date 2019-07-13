@@ -1,3 +1,7 @@
+/**
+ * Package che gestisce l'acquisizione dei dati presenti
+ * nelle tabelle di un Database.
+ */
 package database;
 /**
  * Modella il fallimento di una connessione

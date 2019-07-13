@@ -9,7 +9,8 @@ public class NoValueException extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Costruttore della classe NoValueException.</p>
+	 * Costruttore della classe NoValueException.
+	 * <p>
 	 * Stampa a video un messaggio di errore
 	 * nel caso in cui venga sollevata l'eccezione.
 	 * @param msg messaggio di errore

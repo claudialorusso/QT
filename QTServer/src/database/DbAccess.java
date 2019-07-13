@@ -3,6 +3,7 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 /**
  * Realizza l'accesso alla base di dati.
  * @author Claudia Lorusso, Angela Dileo

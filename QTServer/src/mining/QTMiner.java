@@ -141,5 +141,4 @@ public class QTMiner implements Serializable{
 	public String toString() {
 		return this.C.toString();
 	}
-
 }

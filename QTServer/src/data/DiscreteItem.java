@@ -1,4 +1,5 @@
 package data;
+
 /**
  * Estende la classe Item
  * che rappresenta la coppia

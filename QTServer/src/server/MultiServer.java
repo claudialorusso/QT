@@ -3,6 +3,7 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 /**
  * Classe che gestisce la connessione
  * tra Client e Server.
@@ -38,8 +39,7 @@ class MultiServer{
 					new MultiServer(port);
 				}
 			}catch (IOException e){
-				System.out.println(e.getMessage());
-
+				System.out.println("Address already in use.\nClosing...");
 				return;
 			}
 		}else if(args.length==0) {
@@ -48,7 +48,7 @@ class MultiServer{
 				System.out.println("Port value setted to '"+port+"' by DEFAULT");
 				new MultiServer(port);
 			}catch (IOException e){
-				System.out.println(e.getMessage());
+				System.out.println("Address already in use.\nClosing...");
 			}
 		}else {
 			System.out.println("ERROR: MAX 1 argument.");

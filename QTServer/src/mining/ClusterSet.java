@@ -62,7 +62,6 @@ public class ClusterSet implements Iterable<Cluster>, Serializable{
 	 * al ClusterSet
 	 * @param c cluster da aggiungere al set
 	 */
-	
 	void add(Cluster c) {
 		C.add(c);
 	}

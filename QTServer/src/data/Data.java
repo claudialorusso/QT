@@ -19,6 +19,7 @@ import database.NoValueException;
 import database.QUERY_TYPE;
 import database.Table_Data;
 import database.Table_Schema;
+
 /**
  * Modella l'insieme di tuple
  * anche dette transizioni o esempi(Examples)

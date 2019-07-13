@@ -1,6 +1,8 @@
 package data;
+
 import java.io.Serializable;
 import java.util.*;
+
 /**
  * Rappresenta una tupla come sequenza di
  * coppie attributo-valore

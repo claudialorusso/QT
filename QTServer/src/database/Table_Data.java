@@ -144,7 +144,6 @@ public class Table_Data {
 		Statement statement;
 		Object value=null;
 		String aggregateOp="";
-
 		String query="select ";
 		if(aggregate==QUERY_TYPE.MAX)
 			aggregateOp+="max";

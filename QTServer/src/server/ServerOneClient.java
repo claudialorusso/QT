@@ -35,6 +35,7 @@ class ServerOneClient extends Thread {
 	 * Stream di dati in output
 	 */
 	private ObjectOutputStream out;
+	
 	/**
 	 * Oggetto della classe QTMiner tramite cui calcolare il clusterSet
 	 */

@@ -180,7 +180,6 @@ public class Data implements Serializable {
 	 */
 	public Tuple getItemSet(int index) {
 		Tuple tuple=new Tuple(this.getNumberOfAttributes());
-		//int i=0;
 		/*
 		 * per ogni attributo presente nel set
 		 * memorizzo in tuple l'attributo discreto

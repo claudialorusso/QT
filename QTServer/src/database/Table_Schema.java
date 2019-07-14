@@ -60,6 +60,7 @@ public class Table_Schema {
 		 * Permette di memorizzare in un'unica stringa
 		 * il nome ed il tipo della colonna.
 		 */
+		@Override
 		public String toString(){
 			return name+":"+type;
 		}

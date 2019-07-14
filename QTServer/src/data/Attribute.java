@@ -11,6 +11,9 @@ import java.io.Serializable;
  * @author Claudia Lorusso, Angela Dileo
  */
 abstract class Attribute implements Serializable {
+	/**
+	 * ID di serializzazione
+	 */
 	private static final long serialVersionUID=1L;
 	/**
 	 * Nome simbolico dell'attributo

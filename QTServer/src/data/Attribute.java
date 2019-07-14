@@ -40,7 +40,7 @@ abstract class Attribute implements Serializable {
 	 * Restituisce l'identificativo numerico dell'attributo
 	 * @return identificativo numerico dell'Attribute
 	 */
-	private int getIndex(){
+	int getIndex(){
 		return index;
 	}
 	/**

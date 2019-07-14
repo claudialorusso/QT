@@ -54,6 +54,7 @@ public class Example implements Comparable<Example>, Serializable{
 	 * Scrive in un'unica stringa la tupla
 	 * considerata.
 	 */
+	@Override
 	public String toString(){
 		String str="";
 		for(Object o:example)

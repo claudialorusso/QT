@@ -180,7 +180,7 @@ public class Data implements Serializable {
 	 */
 	public Tuple getItemSet(int index) {
 		Tuple tuple=new Tuple(this.getNumberOfAttributes());
-		int i=0;
+		//int i=0;
 		/*
 		 * per ogni attributo presente nel set
 		 * memorizzo in tuple l'attributo discreto
@@ -189,14 +189,16 @@ public class Data implements Serializable {
 		 * stessa cosa vale nel caso in cui
 		 * l'attribute sia continuo.
 		 */
-		for(Attribute a: attributeSet) {
-			if (a instanceof DiscreteAttribute) {
-				tuple.add(new DiscreteItem((DiscreteAttribute) a,(String)this.getAttributeValue(index,i)),i);	
+		Iterator<Attribute> a = ((LinkedList<Attribute>)this.attributeSet).iterator();
+		while(a.hasNext()) {
+			Attribute at= a.next();
+			int i = at.getIndex();
+			if (at instanceof DiscreteAttribute) {
+				tuple.add(new DiscreteItem((DiscreteAttribute) at,(String)this.getAttributeValue(index,i)),i);	
 			}
 			else {
-				tuple.add(new ContinuousItem((ContinuousAttribute)a,(Double)this.getAttributeValue(index,i)),i);
+				tuple.add(new ContinuousItem((ContinuousAttribute)at,(Double)this.getAttributeValue(index,i)),i);
 			}
-			i++;
 		}
 		return tuple;
 	}

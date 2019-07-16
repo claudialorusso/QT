@@ -107,7 +107,7 @@ class ServerOneClient extends Thread {
 					} catch (FileNotFoundException e) {
 						out.writeObject("ERROR: File Not Found!");
 					}catch (IOException e) {
-						out.writeObject("ERROR: I/O not corrected!");
+						out.writeObject("ERROR: improper I/O!");
 					}catch(Exception e) {
 						out.writeObject(e.getMessage());
 					}
@@ -117,12 +117,12 @@ class ServerOneClient extends Thread {
 					String fileName = ((String) this.in.readObject());
 					try {
 						if(fileName!=null) {
-							out.writeObject("OK");
 							qt = new QTMiner(fileName);
+							out.writeObject("OK");
 							out.writeObject(qt.toString());
 						} else out.writeObject("Loading aborted!");
 					}catch (FileNotFoundException e) {
-						out.writeObject(e.getMessage());
+						out.writeObject("File NOT found!");
 					}catch(	IOException|
 							ClassNotFoundException e) {
 						out.writeObject(e.getMessage());

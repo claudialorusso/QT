@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 import java.net.Socket;
 import java.sql.SQLException;
 import data.Data;
@@ -121,7 +122,10 @@ class ServerOneClient extends Thread {
 							out.writeObject("OK");
 							out.writeObject(qt.toString());
 						} else out.writeObject("Loading aborted!");
-					}catch (FileNotFoundException e) {
+					}catch(StreamCorruptedException e) {
+						out.writeObject("FILE DEMAGED: You tried to open a non-original 'dmp' file.\n Retry!");
+					}
+					catch (FileNotFoundException e) {
 						out.writeObject("File NOT found!");
 					}catch(	IOException|
 							ClassNotFoundException e) {

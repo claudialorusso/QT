@@ -13,123 +13,133 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Modella un cluster
+ * Modella un cluster ovvero un set di {@link Tuple}.
  * @author Claudia Lorusso, Angela Dileo
  */
 class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
+	
 	/**
-	 * ID di serializzazione
+	 * ID di serializzazione.
 	 */
 	private static final long serialVersionUID=1L;
+	
 	/**
-	 * Tupla corrispondente al Centroide,
+	 * {@link Tuple} corrispondente al centroide,
 	 * cioe' il punto
-	 * rappresentativo del cluster
+	 * rappresentativo del cluster.
 	 */
 	private Tuple centroid;
+	
 	/**
 	 * Set di interi contenente l'id
 	 * delle tuple clusterizzate
-	 * presenti nel Cluster
+	 * presenti nel {@link Cluster}.
 	 */
 	private Set <Integer> clusteredData;
+	
 	/**
 	 * Costruttore della
-	 * classe Cluster,
-	 * assegna un valore al centroide,
-	 * inizializza clusteredData
-	 * @param centroid centroide del cluster
+	 * classe {@link Cluster},
+	 * assegna un valore al centroide ed
+	 * inizializza {@link #clusteredData}.
+	 * @param centroid tupla corrispondente al centroide del cluster
 	 */
-	Cluster(Tuple centroid){
-		this.centroid=centroid;
+	Cluster(Tuple centroid) {
+		this.centroid = centroid;
 		clusteredData =  new HashSet <Integer>();
 	}
+	
 	/**
-	 * Acquisisce la tupla Centroide
+	 * Acquisisce il {@link #centroid}e
 	 * @return tupla centroide
 	 */
 	private Tuple getCentroid(){
 		return centroid;
 	}
+	
 	/**
-	 * Aggiunge l'id di una nuova
-	 * tupla clusterizzata in Data.
+	 * Aggiunge l'<tt>id</tt> di una nuova
+	 * tupla clusterizzata in {@link Data}.<br>
 	 * Restituisce true se
-	 * la tupla ha cambiato il suo cluster
+	 * la tupla ha cambiato il suo {@link Cluster}
 	 * di appartenenza.
-	 * @param id posizone tupla da aggiungere a
-	 * ClusteredData
+	 * @param id posizone della tupla da aggiungere a
+	 * {@link #clusteredData}
 	 * @return true se la tupla ha modificato
 	 * il suo cluster di appartenenza, false altrimenti
 	 */
 	boolean addData(int id){
 		return clusteredData.add(id);
 	}
+	
 	/**
 	 * Restituisce la cardinalita'
-	 * del Cluster
+	 * del {@link Cluster}.
 	 * @return numero totale di tuple contenute nel Cluster
 	 */
-	int  getSize(){
+	int getSize(){
 		return clusteredData.size();
 	}
+	
 	/**
-	 * Override del toString di Object.
-	 * Salva in una stringa la tupla Centroide
-	 * del Cluster.
-	 * @return stringa contenente la tupla Centroide
-	 * del cluster
+	 * Override del toString di Object.<br>
+	 * Salva in una stringa la tupla {@link #centroid}e
+	 * del {@link Cluster}.
+	 * @return stringa contenente la tupla {@link #centroid}e
+	 * del {@link Cluster}
 	 */
 	@Override
 	public String toString(){
-		String str="Centroid=(";
-		for(int i=0;i<centroid.getLength();i++)
-			str+=centroid.get(i)+" ";
-		str+=")";
+		String str = "Centroid=(";
+		for (int i=0; i < centroid.getLength(); i++)
+			str += centroid.get(i) + " ";
+		str += ")";
 		return str;
 	}
+	
 	/**
 	 * Memorizza in una stringa
-	 * tutte le informazioni sul Cluster:
-	 * <p>
-	 * -	il suo centroide
-	 * <p>
-	 * -	le tuple contenute nel cluster
-	 * <p>
-	 * -	la distanza tra la tupla ed il centroide
-	 * <p>
-	 * -	la distanza media
-	 * @param data oggetto della classe Data
-	 * @return str stringa contenente le informazioni sul Cluster
+	 * tutte le informazioni sul {@link Cluster}:<br><ul>
+	 * 	<li> il suo centroide
+	 * 	<li> le tuple contenute nel cluster
+	 *  <li> la distanza tra la tupla ed il centroide
+	 *  <li> la distanza media</ul>
+	 * @param data oggetto della classe {@link Data}
+	 * @return str stringa contenente le informazioni sul {@link Cluster}
 	 */
-	public String toString(Data data){
+	String toString(Data data) {
 		String str = toString().concat("\nExamples:\n");
-		Iterator<Integer> it=clusteredData.iterator();
-		while(it.hasNext()){
-			int i=it.next();
-			str+="[";
-			for(int j=0;j<data.getNumberOfAttributes();j++)
-				str+=data.getAttributeValue(i, j)+" ";
-			str+="] dist="+getCentroid().getDistance(data.getItemSet(i))+"\n";
+		Iterator<Integer> it = clusteredData.iterator();
+		while (it.hasNext()){
+			int i = it.next();
+			str += "[";
+			for (int j=0; j < data.getNumberOfAttributes(); j++)
+				str += data.getAttributeValue(i, j) + " ";
+			str += "] dist=" + getCentroid().getDistance(data.getItemSet(i)) + "\n";
 		}
-		str+="AvgDistance="+getCentroid().avgDistance(data,this.clusteredData)+"\n";
+		str += "AvgDistance=" + getCentroid().avgDistance(data,this.clusteredData) + "\n";
 		return str;
 	}
+	
 	/**
-	 * Restituisce un iteratore su clusteredData.
+	 * Restituisce un iteratore su {@link #clusteredData}.
 	 */
 	@Override
 	public Iterator<Integer> iterator() {
 		return clusteredData.iterator();
 	}
+	
 	/**
-	 * Override del metodo compareTo dell'interfaccia Comparable.
-	 * Il comparatore confronta due Cluster in base alla
-	 * popolosità restituendo -1 o 1
+	 * Override del metodo compareTo dell'interfaccia {@link Comparable}.<br>
+	 * Il comparatore confronta due {@link Cluster}s in base alla
+	 * popolosità restituendo -1 o 1.
+	 * @param c2 {@link Cluster} da confrontare con quello corrente
+	 * @return -1 se la dimensione del primo cluster e' superiore a quella del secondo,
+	 * 1 altrimenti
 	 */
 	@Override 
 	public int compareTo(Cluster c2) {
-		if(this.getSize() > c2.getSize())
+		if (this.getSize() > c2.getSize())
 			return -1;
 		else
 			return 1;

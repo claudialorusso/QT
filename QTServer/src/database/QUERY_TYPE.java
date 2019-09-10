@@ -1,6 +1,6 @@
 package database;
 /**
- * Classe enumerativa.
+ * Classe enumerativa.<br>
  * Valori:
  * -	MIN
  * -	MAX

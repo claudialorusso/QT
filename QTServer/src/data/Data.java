@@ -21,29 +21,34 @@ import database.Table_Data;
 import database.Table_Schema;
 
 /**
- * Modella l'insieme di tuple
- * anche dette transizioni o esempi(Examples)
+ * Modella l'insieme di tuple -
+ * anche dette transizioni o esempi(Examples).
  * @author Claudia Lorusso, Angela Dileo
  */
 public class Data implements Serializable {
+	
 	/**
 	 * ID di serializzazione
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Lista di Example/tuple
 	 */
 	private List<Example> data = new ArrayList<Example>();
+	
 	/**
 	 * Cardinalita' dell'insieme di tuple,
 	 * cioe' numero di tuple in data
 	 */
 	private int numberOfExamples;
+	
 	/**
 	 * Lista degli attributi contenuti in ciascuna tupla
 	 * cioe' lo schema della tabella di dati
 	 */
 	private List<Attribute> attributeSet = new LinkedList<Attribute>();
+	
 	/**
 	 * Costruttore della classe Data. 
 	 * <p>
@@ -98,6 +103,7 @@ public class Data implements Serializable {
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	/**
 	 * Restituisce il numero di tuple/esempi
 	 * @return numero di tuple/esempi
@@ -105,6 +111,7 @@ public class Data implements Serializable {
 	public int getNumberOfExamples() {
 		return numberOfExamples;
 	}
+	
 	/**
 	 * Restituisce la dimensione di attributeSet
 	 * cioe' il numero di attributi presenti
@@ -114,6 +121,7 @@ public class Data implements Serializable {
 	public int getNumberOfAttributes() {
 		return attributeSet.size();
 	}
+	
 	/**
 	 * Restituisce l'attributeSet
 	 * @return lo schema degli attributi
@@ -121,9 +129,10 @@ public class Data implements Serializable {
 	private List<Attribute> getAttributeSchema() {
 		return attributeSet;
 	}
+	
 	/**
 	 * Restituisce il valore della lista di Examples
-	 * 'data' avendo in input una riga ed una colonna
+	 * 'data' avendo in input una riga ed una colonna.
 	 * @param exampleIndex indiceche fa riferimento alla tupla di data
 	 * da cui estrapolare l'attributo
 	 * @param attributeIndex indice che fa riferimento all'attributo
@@ -134,10 +143,11 @@ public class Data implements Serializable {
 	public Object getAttributeValue(int exampleIndex, int attributeIndex){
 		return data.get(exampleIndex).get(attributeIndex);
 	}
+	
 	/**
 	 * Override del metodo toString di Object.
-	 * <p>
-	 * Crea una stringa in cui memorizza
+	 * <br>
+	 * Crea una stringa in cui viene memorizzato
 	 * lo schema della tabella
 	 * e le tuple memorizzate in data
 	 * opportunamente numerate
@@ -167,11 +177,12 @@ public class Data implements Serializable {
 		}		
 		return transazioni;
 	}
+	
 	/**
 	 * Crea e restituisce un oggetto di Tuple
 	 * che modella come sequenza di coppie
 	 * Attributo-valore la i-esima riga in data.
-	 * <p>
+	 * <br>
 	 * Nello specifico, memorizzo in tuple
 	 * l'Item discreto corrente.
 	 * @param index indice di riferimento alla tupla
@@ -179,28 +190,19 @@ public class Data implements Serializable {
 	 * @return la tupla desiderata
 	 */
 	public Tuple getItemSet(int index) {
-		Tuple tuple=new Tuple(this.getNumberOfAttributes());
-		/*
-		 * per ogni attributo presente nel set
-		 * memorizzo in tuple l'attributo discreto
-		 * ed il corrispondente valore discreto
-		 * in altre parole l'Item discreto corrente;
-		 * stessa cosa vale nel caso in cui
-		 * l'attribute sia continuo.
-		 */
+		Tuple tuple = new Tuple(this.getNumberOfAttributes());
 		Iterator<Attribute> a = ((LinkedList<Attribute>)this.attributeSet).iterator();
-		while(a.hasNext()) {
+		while (a.hasNext()) {
 			Attribute at= a.next();
 			int i = at.getIndex();
-			if (at instanceof DiscreteAttribute) {
-				tuple.add(new DiscreteItem((DiscreteAttribute) at,(String)this.getAttributeValue(index,i)),i);	
-			}
-			else {
+			if (at instanceof DiscreteAttribute) 
+				tuple.add(new DiscreteItem((DiscreteAttribute) at,(String)this.getAttributeValue(index,i)),i);
+			else
 				tuple.add(new ContinuousItem((ContinuousAttribute)at,(Double)this.getAttributeValue(index,i)),i);
-			}
 		}
 		return tuple;
 	}
+	
 	/**
 	 * Inner class che permette di verificare
 	 * se il nome della tabella da cercare nel database
@@ -208,8 +210,16 @@ public class Data implements Serializable {
 	 * nel database.
 	 * @author Claudia Lorusso, Angela Dileo
 	 */
-	static class TableVerify{
-		static boolean tableExists(Connection conn, String tableName) throws SQLException,SQLSyntaxErrorException {
+	private static class TableVerify {
+		
+		/**
+		 * @param conn la connessione al database
+		 * @param tableName nome della tabella da cercare nel db
+		 * @return true se la tabella cercata e' presente nel database
+		 * @throws SQLException se viene effettuato un accesso al database quando la connessione e' chiusa
+		 * @throws SQLSyntaxErrorException nel caso in cui ci dovessero essere errori di sintassi nel nome della tabella inserito
+		 */
+		private static boolean tableExists(Connection conn, String tableName) throws SQLException,SQLSyntaxErrorException {
 			boolean tExists = false;
 			try (ResultSet rs = conn.getMetaData().getTables(null, null, tableName, null)) {
 				while (rs.next()) { 

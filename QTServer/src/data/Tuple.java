@@ -5,34 +5,39 @@ import java.util.*;
 
 /**
  * Rappresenta una tupla come sequenza di
- * coppie attributo-valore
+ * coppie attributo - valore.
  * @author Claudia Lorusso, Angela Dileo
  */
-public class Tuple implements Serializable{
+public class Tuple implements Serializable {
+	
 	/**
-	 * ID di serializzazione
+	 * ID di serializzazione.
 	 */
 	private static final long serialVersionUID=1L;
+	
 	/**
-	 * Vettore di Item che compongono una tupla
+	 * Vettore di {@link Item} che costituiscono una tupla.
 	 */
 	private Item[] tuple;
+	
 	/**
-	 * Costruisce l'oggetto riferito da tuple
-	 * @param size numero di item che costituira' la tupla
+	 * Costruisce l'oggetto riferito da {@link tuple}.
+	 * @param size numero di item che contiene la tupla
 	 */
-	Tuple(int size){
-		this.tuple=new Item[size];
+	Tuple(int size) {
+		this.tuple = new Item[size];
 	}
+	
 	/**
-	 * Restituisce la lunghezza della tupla
+	 * Restituisce la lunghezza della tupla.
 	 * @return la lunghezza della tupla
 	 */
 	public int getLength() {
 		return tuple.length;
 	}
+	
 	/**
-	 * Restituisce l'item in posizione i-esima
+	 * Restituisce l'{@link Item} in {@link #tuple} in posizione i-esima.
 	 * @param i posizione dell'item da estrapolare
 	 * dalla tupla
 	 * @return l'item in posizione i-esima
@@ -40,20 +45,22 @@ public class Tuple implements Serializable{
 	public Item get(int i) {
 		return tuple[i];
 	}
+	
 	/**
-	 * Memorizza l'item c
-	 * nella posizione i-esima di tuple
+	 * Memorizza l'{@link Item} <tt>c</tt>
+	 * nella posizione i-esima di {@link tuple}.
 	 * @param c item da memorizzare in tuple
-	 * @param i posizione di tuple in cui memorizzare c
+	 * @param i posizione di tuple in cui memorizzare <tt>c</tt>
 	 */
 	void add(Item c, int i) {
-		tuple[i]=c;
+		tuple[i] = c;
 	}
+	
 	/**
 	 * Determina la distanza tra
-	 * la tupla riferita da obj
+	 * la tupla riferita da <tt>obj</tt>
 	 * e la tupla corrente.
-	 * <p>
+	 * <br>
 	 * La distanza corrisponde alla somma
 	 * delle distanze tra gli Item in posizioni uguali
 	 * nelle due tuple.
@@ -63,17 +70,17 @@ public class Tuple implements Serializable{
 	public double getDistance (Tuple obj) {
 		double distanza=0.0;
 		int i=0;
-		for(i=0;i<getLength();i++) {
-			distanza+= get(i).distance(obj.get(i));
-		}
+		for (i=0; i < getLength(); i++)
+			distanza += get(i).distance(obj.get(i));
 		return distanza;
 	}
+	
 	/**
 	 * Restituisce la media delle distanze
-	 * tra le tuple contenute nel Cluster
-	 * nelle posizioni specificate dal Set clusteredData
-	 * @param data oggetto di tipo Data da cui
-	 * estrapolare i vari Items
+	 * tra le tuple contenute nel cluster
+	 * nelle posizioni specificate dal Set <tt>clusteredData</tt>
+	 * @param data oggetto di tipo {@link Data} da cui
+	 * estrapolare i vari {@link Item}s
 	 * @param clusteredData l'insieme clusterizzato
 	 * @return distanza media tra le tuple nel cluster
 	 */

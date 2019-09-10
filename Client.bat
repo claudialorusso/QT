@@ -1,2 +1,2 @@
 @echo off
-start java -jar "%~dp0\Client.jar %*"
+cmd /k java -jar "%~dp0\Client.jar %*"

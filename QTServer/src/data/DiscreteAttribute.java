@@ -10,16 +10,22 @@ import java.util.TreeSet;
  * @author Claudia Lorusso, Angela Dileo
  */
 class DiscreteAttribute extends Attribute implements Iterable<String> {
+	
+	/**
+	 * ID di serializzazione.
+	 */
 	private static final long serialVersionUID=1L;
+	
 	/**
 	 * Set di oggetti di tipo String,
-	 * uno per ciascun valore del dominio discreto
+	 * uno per ciascun valore del dominio discreto.
 	 */
 	private Set<String> values;
+	
 	/**
 	 * Invoca il costruttore della classe madre
-	 * ed inizializza il membro values
-	 * con il parametro in input
+	 * ed inizializza il membro {@link #values}
+	 * con il parametro <tt>values</tt> in input.
 	 * @param name Nome simbolico dell'attributo
 	 * @param index Identificativo numerico dell'attributo
 	 * @param values TreeSet di oggetti di tipo String,
@@ -29,41 +35,47 @@ class DiscreteAttribute extends Attribute implements Iterable<String> {
 		super(name,index);
 		this.values=values;
 	}
+	
 	/**
-	 * Restituisce la dimensione di values
+	 * Restituisce la dimensione di {@link #values}.
 	 * @return dimensione di values
 	 */
 	private int getNumberOfDistinctValues() {
 		return values.size();
 	}
+	
 	/**
-	 * Restituisce un iteratore per la classe DiscreteAttribute.
+	 * Restituisce un iteratore per la classe {@link DiscreteAttribute}.
 	 */
 	@Override
 	public Iterator<String> iterator() {
 		return new StringIterator();
 	}
+	
 	/**
-	 * Inner Class di DiscreteAttribute.
-	 * <p>
+	 * Inner Class di {@link DiscreteAttribute}.
+	 * <br>
 	 * Implementazione dell'iteratore di DiscreteAttribute.
-	 * <p>
+	 * <br>
 	 * (Abbiamo deciso di metterci alla prova
 	 * e di implementare i metodi dell'interfaccia corrispondente
 	 * all'iteratore di stringhe
 	 * in modo che facessero esattamente lo stesso lavoro di quelli
-	 * già implementati di default).
+	 * gia' implementati di default).
 	 * @author Claudia Lorusso, Dileo Angela
 	 */
 	private class StringIterator implements Iterator<String>{
+		
 		/**
-		 * conta gli elementi nel TreeSet
+		 * Conta gli elementi nel {@link TreeSet}.
 		 */
 		private int count = -1;
+		
 		/**
-		 * Valore corrente
+		 * Valore corrente.
 		 */
 		private String current = ((TreeSet<String>)values).first();
+		
 		/**
 		 * Verifica se c'è un elemento successivo a quello corrente.
 		 */
@@ -73,6 +85,7 @@ class DiscreteAttribute extends Attribute implements Iterable<String> {
 				return true;
 			else return false;
 		}
+		
 		/**
 		 * Estrapola l'elemento successivo.
 		 */

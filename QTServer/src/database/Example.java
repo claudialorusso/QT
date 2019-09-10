@@ -3,28 +3,33 @@ package database;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Modella una transazione/tupla/esempio letto dalla base di dati.
  */
-public class Example implements Comparable<Example>, Serializable{
+public class Example implements Comparable<Example>, Serializable {
+	
 	/**
-	 * ID di serializzazione
+	 * ID di serializzazione.
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
-	 * Lista di oggetti(corrispondenti agli Items) contenuti nella tupla/example
+	 * Lista di oggetti(corrispondenti agli Items) contenuti nella tupla {@link #example}.
 	 */
-	private List<Object> example=new ArrayList<Object>();
+	private List<Object> example = new ArrayList<Object>();
+	
 	/**
-	 * Aggiunge un item nella tupla
+	 * Aggiunge un item nella tupla {@link #example}.
 	 * @param o item da aggiungere nella tupla
 	 */
 	void add(Object o){
 		example.add(o);
 	}
+	
 	/**
-	 * Acquisisce l'item in posizione i-esima
-	 * nella tupla
+	 * Acquisisce l'object in posizione i-esima
+	 * nella tupla {@link #example}.
 	 * @param i posizione da cui reperire l'item
 	 * nella tupla
 	 * @return i-esimo item nella tupla
@@ -32,6 +37,7 @@ public class Example implements Comparable<Example>, Serializable{
 	public Object get(int i){
 		return example.get(i);
 	}
+	
 	/**
 	 * Confronta due tuple.
 	 * Restituisce un intero negativo, zero
@@ -49,8 +55,9 @@ public class Example implements Comparable<Example>, Serializable{
 		}
 		return 0;
 	}
+	
 	/**
-	 * Riscrittura del toString.
+	 * Riscrittura del toString.<br>
 	 * Scrive in un'unica stringa la tupla
 	 * considerata.
 	 */

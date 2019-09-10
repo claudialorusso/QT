@@ -1,17 +1,19 @@
 package data;
 
 /**
- * Estende la classe Item
+ * Estende la classe {@link Item}
  * che rappresenta la coppia
- * (Attributo discreto-valore discreto)
- * per esempio Outlook="Sunny"
+ * (Attributo discreto - valore discreto)
+ * per esempio [Outlook = 'Sunny']
  * @author Claudia Lorusso, Angela Dileo
  */
-class DiscreteItem extends Item{
+class DiscreteItem extends Item {
+	
 	/**
 	 * ID di serializzazione
 	 */
 	private static final long serialVersionUID=1L;
+	
 	/**
 	 * Costruttore della classe DiscreteItem,
 	 * struttato invocando il costruttore
@@ -22,6 +24,7 @@ class DiscreteItem extends Item{
 	DiscreteItem(DiscreteAttribute attribute, String value) {
 		super(attribute, value);
 	}
+	
 	/**
 	 * Implementazione del metodo
 	 * presente nella classe astratta Item.

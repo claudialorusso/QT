@@ -2,15 +2,13 @@ package keyboardinput;
 
 import java.io.*;
 import java.util.*;
+
 /**
  * Classe che gestisce l'acquisizione da tastiera.
  * @author Claudia Lorusso, Angela Dileo
  */
 public class Keyboard {
-	/**
-	 * Carattere corrispondente al simbolo della croce.
-	 */
-	public static final char CROSS_ASCII =(char)8224; 
+	
 	// ************* Error Handling Section **************************
 	/**
 	 * Verifica la stampa di errori.
@@ -32,32 +30,35 @@ public class Keyboard {
 	 * Token/Blocco di testo corrente.
 	 */
 	private static String current_token = null;
+	
 	/**
 	 * Suddivide una stringa in tokens.
 	 */
 	private static StringTokenizer reader;
+	
 	/**
 	 * Acquisizione input utente.
 	 */
 	private static BufferedReader in = new BufferedReader(
 			new InputStreamReader(System.in));
+	
 	/**
 	 * Acquisisce il token in input successivo
-	 * assumento che possa essere su righe di input
-	 * consegutive.
+	 * assumendo che possa essere su righe di input
+	 * consecutive.
 	 * @return token successivo
 	 */
 	private static String getNextToken() {
 		return getNextToken(true);
 	}
+	
 	/**
-	 * Acquisisce il token in input successivo
-	 * @param skip  determina se le righe consecutive sono utilizzate o meno.
+	 * Acquisisce il token in input successivo.
+	 * @param skip determina se le righe consecutive sono utilizzate o meno.
 	 * @return token successivo
 	 */
 	private static String getNextToken(boolean skip) {
 		String token;
-
 		if (current_token == null)
 			token = getNextInputToken(skip);
 		else {
@@ -66,10 +67,11 @@ public class Keyboard {
 		}
 		return token;
 	}
+	
 	/**
-	 * Acquisisce il successivo token in input,
+	 * Acquisisce il token successivo in input,
 	 * che potrebbe provenire
-	 * dalla corrente riga in input.
+	 * dalla riga corrente in input.
 	 * @param skip determina se le righe consecutive sono utilizzate o meno.
 	 * @return token successivo.
 	 */
@@ -78,11 +80,11 @@ public class Keyboard {
 		String token = null;
 		try {
 			reader = new StringTokenizer(in.readLine(), delimiters, true);
-			if (reader.countTokens()==1) {
+			if (reader.countTokens() == 1)
 				token = reader.nextToken();
-			}else {
-				reader=null;
-				token=null;
+			else {
+				reader = null;
+				token = null;
 			}
 		} catch (Exception exception) {
 			token = null;
@@ -108,6 +110,7 @@ public class Keyboard {
 		}
 		return token;
 	}
+	
 	/**
 	 * Restituisce un carattere letto da standard input.
 	 * @return un carattere letto da standard input.
@@ -117,7 +120,7 @@ public class Keyboard {
 		char value;
 		try {
 			if (token.length() > 1) {
-				token=null;
+				token = null;
 			} else
 				current_token = null;
 			value = token.charAt(0);
@@ -127,6 +130,7 @@ public class Keyboard {
 		}
 		return value;
 	}
+	
 	/**
 	 * Restituisce un intero letto da standard input.
 	 * @return un intero letto da standard input.
@@ -142,8 +146,9 @@ public class Keyboard {
 		}
 		return value;
 	}
+	
 	/**
-	 * Restituisce un double letto da standard input.
+	 * Restituisce un numero {@link Double} letto da standard input.
 	 * @return double letto da standard input.
 	 */
 	public static double readDouble() {
